@@ -14,13 +14,16 @@ public class PresentationController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI slideText;
 
-    [SerializeField]    
-    bool preloadTextures = false;
+    [SerializeField]
+    SlideSettingsUIController slideSettingsUI;
+
 
     // Don't use preload textures: Load when showing other slides
     string[] imagePaths;
     // Use preload textures: Load when import folder
-    Texture2D[] textures;
+    Texture2D[] originalTextures;
+
+    Texture2D[] presentationTextures;
 
     int index = 0;
     int maxIndex = -1;
@@ -60,16 +63,15 @@ public class PresentationController : MonoBehaviour
         maxIndex = imagePaths.Length - 1;
         index = 0;
 
-        if(preloadTextures == true)
+        // Load textures
+        originalTextures = new Texture2D[maxIndex + 1];
+        for(int i = 0; i < imagePaths.Length; i++)
         {
-            textures = new Texture2D[maxIndex + 1];
-            for(int i = 0; i < imagePaths.Length; i++)
-            {
-                textures[i] = GetTextureFromImage(imagePaths[i]);
-            }
+            originalTextures[i] = GetTextureFromImage(imagePaths[i]);
         }
 
-        ShowSlide();
+        // Go to slide settings
+        slideSettingsUI.Init(originalTextures);
     }
 
     public void ShowNextSlide()
@@ -84,6 +86,21 @@ public class PresentationController : MonoBehaviour
         ShowSlide();
     }
 
+    public void ApplyNewSlideList(List<int> indices)
+    {
+        presentationTextures = new Texture2D[indices.Count];
+        int i = 0;
+        foreach(int index in indices)
+        {
+            presentationTextures[i++] = originalTextures[index - 1];
+        }
+        maxIndex = indices.Count - 1;
+
+        // Show First Slide
+        index = 0;
+        ShowSlide();
+    }
+
     void ShowSlide()
     {
         if(maxIndex == -1)
@@ -91,14 +108,7 @@ public class PresentationController : MonoBehaviour
             return;
         }
 
-        if(preloadTextures == true)
-        {
-            meshRenderer.material.mainTexture = textures[index];
-        }
-        else
-        {
-            meshRenderer.material.mainTexture = GetTextureFromImage(imagePaths[index]);
-        }
+        meshRenderer.material.mainTexture = presentationTextures[index];
         slideText.text = string.Format("Slide {0} / {1}", index + 1, maxIndex + 1);
     }
 
