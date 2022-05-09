@@ -1,29 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using SFB;
 using System.IO;
 using TMPro;
 using System.Linq;
 
+public class PresentationData
+{
+    public bool isVideo;
+    public Texture2D slideTexture;
+    public string videoUrl;
+}
+
 public class PresentationController : MonoBehaviour
 {
     [SerializeField]
-    MeshRenderer meshRenderer;
+    MeshRenderer screenRenderer;
     [SerializeField]
     TextMeshProUGUI slideText;
 
     [SerializeField]
     SlideSettingsUIController slideSettingsUI;
 
+    public VideoPlayer videoPlayer;
+
 
     // Don't use preload textures: Load when showing other slides
-    string[] imagePaths;
-    // Use preload textures: Load when import folder
-    Texture2D[] originalTextures;
+    string[] slidePaths;
 
-    Texture2D[] presentationTextures;
+    // Use preload textures: Load when import folder
+    List<PresentationData> originalDataList;
+    List<PresentationData> presentationDataList;
 
     int index = 0;
     int maxIndex = -1;
@@ -32,6 +42,7 @@ public class PresentationController : MonoBehaviour
     void Start()
     {
         slideText.text = "Press \"Open Folder\" to import";
+        // videoPlayer = screenRenderer.GetComponent<VideoPlayer>();
     }
 
 
@@ -50,28 +61,45 @@ public class PresentationController : MonoBehaviour
             return;
         }
 
-        imagePaths = GetImagesFromFolder(path).ToArray<string>();
-        Debug.Log(imagePaths.Length + " png images were found.");
+        slidePaths = GetSlidesFromFolder(path).ToArray<string>();
+        Debug.Log(slidePaths.Length + " png/jpg/mp4 files were found.");
 
         // No images found
-        if(imagePaths.Length == 0)
+        if(slidePaths.Length == 0)
         {
             maxIndex = -1;
             return;
         }
 
-        maxIndex = imagePaths.Length - 1;
+        maxIndex = slidePaths.Length - 1;
         index = 0;
 
-        // Load textures
-        originalTextures = new Texture2D[maxIndex + 1];
-        for(int i = 0; i < imagePaths.Length; i++)
+        // Load and store slides
+        originalDataList = new List<PresentationData>();
+        originalDataList.Clear();
+
+        foreach(var slidePath in slidePaths)
         {
-            originalTextures[i] = GetTextureFromImage(imagePaths[i]);
+            var data = new PresentationData();
+            // Is it video?
+            if(slidePath.EndsWith(".mp4") == true)
+            {
+                Debug.Log("video detected! : " + slidePath);
+                data.isVideo = true;
+                data.videoUrl = slidePath;
+            }
+            // Else
+            else
+            {
+                data.isVideo = false;
+                data.slideTexture = GetTextureFromImage(slidePath);
+            }
+
+            originalDataList.Add(data);
         }
 
         // Go to slide settings
-        slideSettingsUI.Init(originalTextures);
+        slideSettingsUI.Init(originalDataList);
     }
 
     public void ShowNextSlide()
@@ -88,11 +116,12 @@ public class PresentationController : MonoBehaviour
 
     public void ApplyNewSlideList(List<int> indices)
     {
-        presentationTextures = new Texture2D[indices.Count];
+        presentationDataList = new List<PresentationData>(indices.Count);
         int i = 0;
         foreach(int index in indices)
         {
-            presentationTextures[i++] = originalTextures[index - 1];
+            Debug.Log("Accessing index " + (index - 1));
+            presentationDataList.Add(originalDataList[index - 1]);
         }
         maxIndex = indices.Count - 1;
 
@@ -108,15 +137,29 @@ public class PresentationController : MonoBehaviour
             return;
         }
 
-        meshRenderer.material.mainTexture = presentationTextures[index];
+        var data = presentationDataList[index];
+        if(data.isVideo == true)
+        {
+            videoPlayer.url = data.videoUrl;
+            StartCoroutine(PlayVideo());
+        }
+        else
+        {
+            if(videoPlayer.isPlaying == true)
+            {
+                videoPlayer.Stop();
+            }
+            screenRenderer.material.mainTexture = data.slideTexture;
+        }
+        
         slideText.text = string.Format("Slide {0} / {1}", index + 1, maxIndex + 1);
     }
 
-    IEnumerable<string> GetImagesFromFolder(string folderPath)
+    IEnumerable<string> GetSlidesFromFolder(string folderPath)
     {
         // Filter: png, jpg
         var paths = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories);
-        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".jpg"));
+        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
     }
 
     Texture2D GetTextureFromImage(string imagePath)
@@ -132,5 +175,20 @@ public class PresentationController : MonoBehaviour
         {
             return null;
         }
+    }
+
+    
+
+    IEnumerator PlayVideo()
+    {
+        videoPlayer.Prepare();
+
+        while(videoPlayer.isPrepared == false)
+        {
+            yield return null;
+        }
+
+        videoPlayer.Play();
+        Debug.Log("Play start");
     }
 }

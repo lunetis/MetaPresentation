@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideImage: {fileID: 5848759294586920388}
   slideNumberText: {fileID: 5848759295253362498}
+  slideNumber: 0
 --- !u!1 &5848759294586920390
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 78d06c86fd844444f903d0b5c1d0b44b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

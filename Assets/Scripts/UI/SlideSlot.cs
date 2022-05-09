@@ -6,16 +6,22 @@ using TMPro;
 
 public class SlideSlot : MonoBehaviour
 {
-    Texture2D texture;
+    PresentationData data;
     public RawImage slideImage;
     public TextMeshProUGUI slideNumberText;
     public int slideNumber;
 
     // Start is called before the first frame update
-    public void Init(Texture2D slideTexture, int number)
+    public void Init(int number, PresentationData data)
     {
-        texture = slideTexture;
-        slideImage.texture = slideTexture;
+        this.data = data;
+
+        // Default slide image texture: movie clip
+        if(data.isVideo == false)
+        {
+            slideImage.texture = data.slideTexture;
+        }
+        
         slideNumber = number;
         slideNumberText.text = "Slide " + number;
     }
@@ -37,6 +43,6 @@ public class SlideSlot : MonoBehaviour
         if(slideController == null)
             return;
 
-        slideController.ChangeSlidePreviewImage(texture, transform);
+        slideController.ChangeSlidePreviewImage(data, transform);
     }
 }

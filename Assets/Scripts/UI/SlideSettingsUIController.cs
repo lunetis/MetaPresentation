@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class SlideSettingsUIController : MonoBehaviour
 {
     public GameObject slideSlotPrefab;
     public GameObject scrollContent;
     public RawImage slidePreviewImage;
+
+    public RenderTexture videoRenderTexture;
     
     public Transform selectedSlot;
     public List<GameObject> slideSlots;
 
     public PresentationController presentationController;
+
+    public VideoPlayer videoPlayer;
+    
     
     // Used in init, resize
     float slotHeight = 0;
     float contentsHeight = 0;
 
-    public void Init(Texture2D[] textures)
+    void Start()
+    {
+        // VideoPlayer Component must be in slidePreviewImage object
+        // videoPlayer = slidePreviewImage.GetComponent<VideoPlayer>();
+    }
+
+    public void Init(List<PresentationData> dataList)
     {
         SlideSlot slideSlotScript;
         int slideNo = 1;
 
-        foreach(Texture2D tex in textures)
+        foreach(var data in dataList)
         {
             // Create slide slot
             GameObject slideSlot = Instantiate(slideSlotPrefab, Vector3.zero, Quaternion.identity);
@@ -44,7 +56,7 @@ public class SlideSettingsUIController : MonoBehaviour
                 continue;
             }
 
-            slideSlotScript.Init(tex, slideNo++);
+            slideSlotScript.Init(slideNo++, data);
         }
 
         // Refresh scroll contents height
@@ -57,16 +69,32 @@ public class SlideSettingsUIController : MonoBehaviour
         RectTransform scrollRectTransform = scrollContent.GetComponent<RectTransform>();
         VerticalLayoutGroup contentLayout = scrollContent.GetComponent<VerticalLayoutGroup>();
 
-        contentsHeight = slotHeight * (slideCount - 1) + (contentLayout.spacing * (slideCount));
+        contentsHeight = slotHeight * (slideCount) + (contentLayout.spacing * (slideCount + 1));
         
         scrollRectTransform.sizeDelta = new Vector2(scrollRectTransform.sizeDelta.x, contentsHeight);
     }
 
-    public void ChangeSlidePreviewImage(Texture2D texture, Transform slotTransform)
+    public void ChangeSlidePreviewImage(PresentationData data, Transform slotTransform)
     {
-        slidePreviewImage.texture = texture;
+        if(data.isVideo == true)
+        {
+            videoPlayer.url = data.videoUrl;
+            slidePreviewImage.texture = videoRenderTexture;
+            StartCoroutine(PlayVideo());
+        }
+        else
+        {
+            if(videoPlayer.isPlaying == true)
+            {
+                videoPlayer.Stop();
+                Debug.Log("Stopped");
+            }
+            slidePreviewImage.texture = data.slideTexture;
+        }
+        
         selectedSlot = slotTransform;
     }
+
 
     // -1: down, 1: up
     public void ChangeOrder(int direction)
@@ -92,8 +120,6 @@ public class SlideSettingsUIController : MonoBehaviour
         {
             number = child.GetComponent<SlideSlot>().slideNumber;
             currentIndices.Add(number);
-
-            Debug.Log(number);
         }
 
         presentationController.ApplyNewSlideList(currentIndices);
@@ -109,5 +135,19 @@ public class SlideSettingsUIController : MonoBehaviour
     public void Toggle()
     {
         gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    
+    IEnumerator PlayVideo()
+    {
+        videoPlayer.Prepare();
+
+        while(videoPlayer.isPrepared == false)
+        {
+            yield return null;
+        }
+
+        videoPlayer.Play();
+        Debug.Log("Play start");
     }
 }
