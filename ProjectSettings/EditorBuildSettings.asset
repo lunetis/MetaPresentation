@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/Base.unity
+    guid: 7f62db489cfbb3c48b9401495a7a653f
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -20,4 +23,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Intro_2.unity
     guid: 52e6a37063958ec4597291734bae9a97
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/EveningA.unity
+    guid: 6a54c90b6c473cb48862062b765a26ac
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/EveningB.unity
+    guid: 6e51415c66579e847bd2b4581df67294
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/NoonA.unity
+    guid: 670f15f008c3a3f498fb2b30d26ddc90
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/NoonB.unity
+    guid: 51de620cc2939144f8fe5838d3fceeb1
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/NightA.unity
+    guid: d6a67ba73d7125e4cae08cb79e920a5f
+  - enabled: 1
+    path: Assets/UnityJapanOffice/Scenes/NightB.unity
+    guid: 6085043725c60594094703ba44e15e0b
   m_configObjects: {}
