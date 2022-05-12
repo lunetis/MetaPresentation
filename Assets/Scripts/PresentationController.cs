@@ -84,7 +84,6 @@ public class PresentationController : MonoBehaviour
             // Is it video?
             if(slidePath.EndsWith(".mp4") == true)
             {
-                Debug.Log("video detected! : " + slidePath);
                 data.isVideo = true;
                 data.videoUrl = slidePath;
             }
@@ -117,10 +116,8 @@ public class PresentationController : MonoBehaviour
     public void ApplyNewSlideList(List<int> indices)
     {
         presentationDataList = new List<PresentationData>(indices.Count);
-        int i = 0;
         foreach(int index in indices)
         {
-            Debug.Log("Accessing index " + (index - 1));
             presentationDataList.Add(originalDataList[index - 1]);
         }
         maxIndex = indices.Count - 1;
@@ -189,6 +186,5 @@ public class PresentationController : MonoBehaviour
         }
 
         videoPlayer.Play();
-        Debug.Log("Play start");
     }
 }
