@@ -11,8 +11,8 @@ public class Map_img_change : MonoBehaviour
     Image thisImg;
     private void Start()
     {
-        thisImg = GetComponent<Image>();
-        thisImg.sprite = map_1;
+        //thisImg = GetComponent<Image>();
+        //thisImg.sprite = map_1;
     }
 
     public void Select_Map1()
