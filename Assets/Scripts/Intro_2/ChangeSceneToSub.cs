@@ -22,7 +22,7 @@ public class ChangeSceneToSub : MonoBehaviour
     {
         if(flag == 1)
         {
-            SceneManager.LoadScene("PresentationTestScene");
+            SceneManager.LoadScene("3DTestScene");
         }
         else if (flag == 2)
         {
