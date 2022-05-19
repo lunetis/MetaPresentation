@@ -79,6 +79,8 @@ public class Folder_Controller : MonoBehaviour
 
         // Go to slide settings
         slideSettingsUI.Init(originalDataList);
+
+        PresentationDataObject.data = originalDataList;
     }
 
 

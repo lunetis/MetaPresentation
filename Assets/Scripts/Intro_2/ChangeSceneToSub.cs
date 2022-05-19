@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class ChangeSceneToSub : MonoBehaviour
 {
-    public int flag;
+    [Space(10)]
+    [Header("Note: If the sceneName is empty, LoadScene will use sceneIndex.")]
+    public int sceneIndex;
+    public string sceneName;
 
     private void Start()
     {
-        flag = 1;
+        
     }
 
     public void QuitApplication()
@@ -20,30 +23,13 @@ public class ChangeSceneToSub : MonoBehaviour
     }
     public void OnRetry()
     {
-        if(flag == 1)
+        if(sceneName != "")
         {
-            SceneManager.LoadScene("3DTestScene");
-        }
-        else if (flag == 2)
-        {
-            SceneManager.LoadScene("LectureRoom");
+            SceneManager.LoadScene(sceneName);
         }
         else
         {
-            SceneManager.LoadScene("Office");
+            SceneManager.LoadScene(sceneIndex);
         }
-    }
-
-    public void FlagSetOne()
-    {
-        flag = 1;
-    }
-    public void FlagSetTwo()
-    {
-        flag = 2;
-    }
-    public void FlagSetThree()
-    {
-        flag = 3;
     }
 }

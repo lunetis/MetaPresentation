@@ -48,6 +48,12 @@ public class PresentationController : MonoBehaviour
     {
         slideText.text = "Press \"Open Folder\" to import";
         // videoPlayer = screenRenderer.GetComponent<VideoPlayer>();
+
+        // Is there any data in PresentationDataObject?
+        if(PresentationDataObject.data != null)
+        {
+            SetDataFromSelectScene();
+        }
     }
 
 
@@ -106,6 +112,22 @@ public class PresentationController : MonoBehaviour
         slideSettingsUI.Init(originalDataList);
     }
 
+
+    public void SetDataFromSelectScene()
+    {
+        originalDataList = PresentationDataObject.data;
+        slideSettingsUI.Init(originalDataList);
+
+        PresentationDataObject.data = null;
+        
+        // Close settings UI
+        slideSettingsUI.gameObject.SetActive(false);
+
+        // Apply automatically
+        List<int> indices = Enumerable.Range(1, originalDataList.Count).ToList();
+        ApplyNewSlideList(indices);
+    }
+
     public void ShowNextSlide()
     {
         index = Mathf.Clamp(index + 1, 0, maxIndex);
@@ -118,6 +140,7 @@ public class PresentationController : MonoBehaviour
         ShowSlide();
     }
 
+    // This indices are 1-base (starts with 1, ends with indices.Count)
     public void ApplyNewSlideList(List<int> indices)
     {
         presentationDataList = new List<PresentationData>(indices.Count);
