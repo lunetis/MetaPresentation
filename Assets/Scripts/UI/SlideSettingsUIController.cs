@@ -28,10 +28,13 @@ public class SlideSettingsUIController : MonoBehaviour
     {
         // VideoPlayer Component must be in slidePreviewImage object
         // videoPlayer = slidePreviewImage.GetComponent<VideoPlayer>();
+        selectedSlot = null;
+        gameObject.SetActive(false);
     }
 
     public void Init(List<PresentationData> dataList)
     {
+        gameObject.SetActive(true);
         SlideSlot slideSlotScript;
         int slideNo = 1;
 
@@ -57,10 +60,18 @@ public class SlideSettingsUIController : MonoBehaviour
             }
 
             slideSlotScript.Init(slideNo++, data);
+
+            // Set first slot to selectedSlot
+            if(selectedSlot == null)
+            {
+                selectedSlot = slideSlot.transform;
+            }
         }
 
         // Refresh scroll contents height
         ResizeScrollContent();
+        
+        ChangeSlidePreviewImage(dataList[0], selectedSlot);
     }
 
     void ResizeScrollContent()

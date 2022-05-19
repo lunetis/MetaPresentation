@@ -26,6 +26,11 @@ public class PresentationController : MonoBehaviour
     SlideSettingsUIController slideSettingsUI;
 
     public VideoPlayer videoPlayer;
+    public VideoPlayer canvasVideoPlayer;
+
+    // 
+    public RawImage keynoteRenderImage;
+    public RenderTexture canvasVideoTexture;
 
 
     // Don't use preload textures: Load when showing other slides
@@ -137,6 +142,9 @@ public class PresentationController : MonoBehaviour
         var data = presentationDataList[index];
         if(data.isVideo == true)
         {
+            keynoteRenderImage.texture = canvasVideoTexture;
+
+            canvasVideoPlayer.url = data.videoUrl;
             videoPlayer.url = data.videoUrl;
             StartCoroutine(PlayVideo());
         }
@@ -144,8 +152,10 @@ public class PresentationController : MonoBehaviour
         {
             if(videoPlayer.isPlaying == true)
             {
+                canvasVideoPlayer.Stop();
                 videoPlayer.Stop();
             }
+            keynoteRenderImage.texture = data.slideTexture;
             screenRenderer.material.mainTexture = data.slideTexture;
         }
         
@@ -179,12 +189,14 @@ public class PresentationController : MonoBehaviour
     IEnumerator PlayVideo()
     {
         videoPlayer.Prepare();
+        canvasVideoPlayer.Prepare();
 
-        while(videoPlayer.isPrepared == false)
+        while(videoPlayer.isPrepared == false || canvasVideoPlayer.isPrepared == false)
         {
             yield return null;
         }
 
         videoPlayer.Play();
+        canvasVideoPlayer.Play();
     }
 }
