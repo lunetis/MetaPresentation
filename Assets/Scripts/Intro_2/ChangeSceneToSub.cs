@@ -32,4 +32,9 @@ public class ChangeSceneToSub : MonoBehaviour
             SceneManager.LoadScene(sceneIndex);
         }
     }
+
+    public void Scene_Office()
+    {
+        sceneName = "Office";
+    }
 }
