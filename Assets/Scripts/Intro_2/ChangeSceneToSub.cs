@@ -37,4 +37,8 @@ public class ChangeSceneToSub : MonoBehaviour
     {
         sceneName = "Office";
     }
+    public void Scene_LectureRoom()
+    {
+        sceneName = "LectureRoom";
+    }
 }
