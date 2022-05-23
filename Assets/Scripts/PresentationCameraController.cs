@@ -6,6 +6,7 @@ public class PresentationCameraController : MonoBehaviour
 {
     public RenderTexture subCameraRenderTexture;
     public List<Camera> cameras;
+
     bool showKeynote = false;
     bool showPresenterWithKeynote = false;
     public Camera uiCamera;

@@ -53,12 +53,11 @@ public class UI_Controller : MonoBehaviour
         }
 
         // Refresh scroll contents height
-        ResizeScrollContent();
+        ResizeScrollContent(dataList.Count);
     }
 
-    void ResizeScrollContent()
+    void ResizeScrollContent(int slideCount)
     {
-        int slideCount = scrollContent.transform.childCount;
         RectTransform scrollRectTransform = scrollContent.GetComponent<RectTransform>();
         VerticalLayoutGroup contentLayout = scrollContent.GetComponent<VerticalLayoutGroup>();
 

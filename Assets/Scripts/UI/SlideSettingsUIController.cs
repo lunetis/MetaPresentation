@@ -12,12 +12,14 @@ public class SlideSettingsUIController : MonoBehaviour
 
     public RenderTexture videoRenderTexture;
     
-    public Transform selectedSlot;
     public List<GameObject> slideSlots;
 
     public PresentationController presentationController;
 
     public VideoPlayer videoPlayer;
+    
+    [HideInInspector]
+    public Transform selectedSlot;
     
     
     // Used in init, resize
@@ -38,12 +40,18 @@ public class SlideSettingsUIController : MonoBehaviour
         SlideSlot slideSlotScript;
         int slideNo = 1;
 
+        foreach(Transform child in scrollContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach(var data in dataList)
         {
             // Create slide slot
             GameObject slideSlot = Instantiate(slideSlotPrefab, Vector3.zero, Quaternion.identity);
             slideSlot.transform.SetParent(scrollContent.transform);
             slideSlots.Add(slideSlot);
+            slideSlot.GetComponent<RectTransform>().localScale = Vector3.one;
 
             // If the slot height is undefined, get slot height
             if(slotHeight == 0)
@@ -69,14 +77,18 @@ public class SlideSettingsUIController : MonoBehaviour
         }
 
         // Refresh scroll contents height
-        ResizeScrollContent();
+        ResizeScrollContent(dataList.Count);
         
         ChangeSlidePreviewImage(dataList[0], selectedSlot);
     }
 
-    void ResizeScrollContent()
+    // If slideCount == -1, Counts child itself
+    void ResizeScrollContent(int slideCount = -1)
     {
-        int slideCount = scrollContent.transform.childCount;
+        if(slideCount == -1)
+        {
+            slideCount = scrollContent.transform.childCount;
+        }
         RectTransform scrollRectTransform = scrollContent.GetComponent<RectTransform>();
         VerticalLayoutGroup contentLayout = scrollContent.GetComponent<VerticalLayoutGroup>();
 

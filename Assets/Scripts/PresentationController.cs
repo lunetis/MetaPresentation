@@ -32,6 +32,10 @@ public class PresentationController : MonoBehaviour
     public RawImage keynoteRenderImage;
     public RenderTexture canvasVideoTexture;
 
+    public Button videoStopButton;
+    public Button videoStartButton;
+    public TMPro.TextMeshProUGUI videoStartPauseText;
+
 
     // Don't use preload textures: Load when showing other slides
     string[] slidePaths;
@@ -54,6 +58,9 @@ public class PresentationController : MonoBehaviour
         {
             SetDataFromSelectScene();
         }
+
+        videoPlayer.loopPointReached += CheckVideoPlayEnded;
+        canvasVideoPlayer.loopPointReached += CheckVideoPlayEnded;
     }
 
 
@@ -86,8 +93,8 @@ public class PresentationController : MonoBehaviour
         index = 0;
 
         // Load and store slides
+        originalDataList?.Clear();
         originalDataList = new List<PresentationData>();
-        originalDataList.Clear();
 
         foreach(var slidePath in slidePaths)
         {
@@ -169,7 +176,8 @@ public class PresentationController : MonoBehaviour
 
             canvasVideoPlayer.url = data.videoUrl;
             videoPlayer.url = data.videoUrl;
-            StartCoroutine(PlayVideo());
+
+            StartCoroutine(StopVideoCoroutine());
         }
         else
         {
@@ -177,10 +185,13 @@ public class PresentationController : MonoBehaviour
             {
                 canvasVideoPlayer.Stop();
                 videoPlayer.Stop();
+                videoStartPauseText.text = "▶";
             }
             keynoteRenderImage.texture = data.slideTexture;
             screenRenderer.material.mainTexture = data.slideTexture;
         }
+
+        SetVideoButtonEnable(data.isVideo);
         
         slideText.text = string.Format("Slide {0} / {1}", index + 1, maxIndex + 1);
     }
@@ -207,9 +218,28 @@ public class PresentationController : MonoBehaviour
         }
     }
 
-    
+    IEnumerator StopVideoCoroutine()
+    {
+        // Not prepared?
+        if(videoPlayer.isPrepared == false || canvasVideoPlayer.isPrepared == false)
+        {
+            videoPlayer.Prepare();
+            canvasVideoPlayer.Prepare();
+        }
+        
+        while(videoPlayer.isPrepared == false || canvasVideoPlayer.isPrepared == false)
+        {
+            yield return null;
+        }
+        videoPlayer.Play();
+        canvasVideoPlayer.Play();
 
-    IEnumerator PlayVideo()
+        // Pause immediately to show first frame
+        videoPlayer.Pause();
+        canvasVideoPlayer.Pause();
+    }
+
+    IEnumerator PlayVideoCoroutine()
     {
         videoPlayer.Prepare();
         canvasVideoPlayer.Prepare();
@@ -221,5 +251,60 @@ public class PresentationController : MonoBehaviour
 
         videoPlayer.Play();
         canvasVideoPlayer.Play();
+    }
+
+    void SetVideoButtonEnable(bool enable)
+    {
+        videoStartButton.interactable = enable;
+        videoStopButton.interactable = enable;
+    }
+
+    public void OnPlayOrPauseButtonClick()
+    {
+        if(videoPlayer.isPlaying == true && canvasVideoPlayer.isPlaying == true)
+        {
+            PauseVideo();
+        }
+        else
+        {
+            PlayVideo();
+        }
+    }
+
+    void PlayVideo()
+    {
+        if(videoPlayer.isPrepared == false || canvasVideoPlayer.isPrepared == false)
+        {
+            StartCoroutine(PlayVideoCoroutine());
+        }
+        else
+        {
+            videoPlayer.Play();
+            canvasVideoPlayer.Play();
+        }
+        videoStartPauseText.text = "||";
+    }
+
+    void PauseVideo()
+    {
+        videoPlayer.Pause();
+        canvasVideoPlayer.Pause();
+        
+        videoStartPauseText.text = "▶";
+    }
+
+    public void StopVideo()
+    {
+        videoPlayer.Stop();
+        canvasVideoPlayer.Stop();
+
+        StartCoroutine(StopVideoCoroutine());
+
+        videoStartPauseText.text = "▶";
+    }
+
+    void CheckVideoPlayEnded(VideoPlayer vp)
+    {
+        videoStartPauseText.text = "▶";
     }
 }
