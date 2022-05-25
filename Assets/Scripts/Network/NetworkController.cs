@@ -4,13 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestConnect : MonoBehaviourPunCallbacks
+public class NetworkController : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
     {
         print("Connecting to server.");
-        PhotonNetwork.GameVersion = "0.0.1";
         PhotonNetwork.ConnectUsingSettings();
     }
     public override void OnConnectedToMaster()
@@ -21,9 +20,4 @@ public class TestConnect : MonoBehaviourPunCallbacks
     {
         print("Disconnected from server for reason " + cause.ToString());
     }
-    // Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 }
