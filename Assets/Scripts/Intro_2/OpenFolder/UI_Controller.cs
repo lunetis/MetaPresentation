@@ -32,7 +32,9 @@ public class UI_Controller : MonoBehaviour
         {
             // Create slide slot
             GameObject slideSlot = Instantiate(slideSlotPrefab, Vector3.zero, Quaternion.identity);
+           
             slideSlot.transform.SetParent(scrollContent.transform);
+            slideSlot.GetComponent<RectTransform>().localScale = Vector3.one;
             slideSlots.Add(slideSlot);
 
             // If the slot height is undefined, get slot height

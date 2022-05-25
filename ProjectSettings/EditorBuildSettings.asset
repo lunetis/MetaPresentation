@@ -8,14 +8,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PresentationTestScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Intro.unity
+  - enabled: 0
+    path: Assets/Deposit/Intro.unity
     guid: bc85d1d01b300d345b10248a1fdb4185
   - enabled: 1
     path: Assets/Scenes/Arena.unity
     guid: 5f3b6c84b69a02c4bb71ccf3d44f2dcb
-  - enabled: 1
-    path: Assets/Scenes/Intro_2.unity
+  - enabled: 0
+    path: Assets/Deposit/Intro_2.unity
     guid: 52e6a37063958ec4597291734bae9a97
   - enabled: 1
     path: Assets/Scenes/LectureRoom.unity
@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Network/Intro.unity
     guid: 276e2c7c21c114c49b5e4a027434b658
+  - enabled: 1
+    path: Assets/Scenes/Intro_3.unity
+    guid: 4e08b5a1ca7508c4699c2b5c8306b2bc
   m_configObjects: {}

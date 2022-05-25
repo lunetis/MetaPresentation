@@ -117,6 +117,7 @@ public class PresentationController : MonoBehaviour
 
         // Go to slide settings
         slideSettingsUI.Init(originalDataList);
+        slideText.text = string.Format("Press 'Apply' to see presentations");
     }
 
 
@@ -164,7 +165,7 @@ public class PresentationController : MonoBehaviour
 
     void ShowSlide()
     {
-        if(maxIndex == -1)
+        if(maxIndex == -1 || presentationDataList == null)
         {
             return;
         }
