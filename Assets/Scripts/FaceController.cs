@@ -15,8 +15,25 @@ public class FaceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator> ();
+        anim = GetComponent<Animator>();
         anim.SetLayerWeight(1, 1);
+
+        // Auto detect emoteUI
+        var emoteUIController = FindObjectOfType<EmoteUIController>();
+        emoteUIController?.InitEmoteButtonPanel(this);
+    }
+
+    public void PlayFaceAnim(int index)
+    {
+        if(index < 0 || index >= animations.Length)
+            return;
+
+        anim.CrossFade (animations[index].name, crossFade);
+        // Index 0 should be default animation
+        if(index != 0)
+        {
+            remainTime = faceShowTime;
+        }
     }
 
     // Update is called once per frame
@@ -24,32 +41,27 @@ public class FaceController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            anim.CrossFade (animations[0].name, crossFade);
+            PlayFaceAnim(0);
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            anim.CrossFade (animations[1].name, crossFade);
-            remainTime = faceShowTime;
+            PlayFaceAnim(1);
         }
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
-            anim.CrossFade (animations[2].name, crossFade);
-            remainTime = faceShowTime;
+            PlayFaceAnim(2);
         }
         if(Input.GetKeyDown(KeyCode.Alpha4))
         {
-            anim.CrossFade (animations[3].name, crossFade);
-            remainTime = faceShowTime;
+            PlayFaceAnim(3);
         }
         if(Input.GetKeyDown(KeyCode.Alpha5))
         {
-            anim.CrossFade (animations[4].name, crossFade);
-            remainTime = faceShowTime;
+            PlayFaceAnim(4);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha6))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            anim.CrossFade (animations[5].name, crossFade);
-            remainTime = faceShowTime;
+            PlayFaceAnim(5);
         }
 
         if(faceShowTime > 0 && remainTime > 0)

@@ -15,6 +15,9 @@ public class PresentationCameraController : MonoBehaviour
 
     Camera currentCamera;
 
+    public GameObject cameraButtonPrefab;
+    public Transform cameraButtonPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +27,22 @@ public class PresentationCameraController : MonoBehaviour
         ChangeCamera(0);
         subCameraView.SetActive(showPresenterWithKeynote);
         uiCamera.enabled = false;
+
+        InitCameraButtonPanel();
     }
 
-    void ChangeCamera(int index)
+    void InitCameraButtonPanel()
+    {
+        for(int i = 0; i < cameras.Count; i++)
+        {
+            GameObject button = Instantiate(cameraButtonPrefab);
+            button.transform.SetParent(cameraButtonPanel);
+            button.GetComponent<RectTransform>().localScale = Vector3.one;
+            button.GetComponent<CameraButton>().Init(this, i + 1, cameras[i].name);
+        }
+    }
+
+    public void ChangeCamera(int index)
     {
         if(index >= cameras.Count)
             return;

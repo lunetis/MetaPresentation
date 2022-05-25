@@ -24,13 +24,17 @@ public class PresentationController : MonoBehaviour
 
     [SerializeField]
     SlideSettingsUIController slideSettingsUI;
+    public Button nextSlideButton;
+    public Button prevSlideButton;
 
-    public VideoPlayer videoPlayer;
-    public VideoPlayer canvasVideoPlayer;
 
-    // 
+    [Header("Presentation Only Mode")]
     public RawImage keynoteRenderImage;
     public RenderTexture canvasVideoTexture;
+    
+    [Header("Video Preferences")]
+    public VideoPlayer videoPlayer;
+    public VideoPlayer canvasVideoPlayer;
 
     public Button videoStopButton;
     public Button videoStartButton;
@@ -169,6 +173,10 @@ public class PresentationController : MonoBehaviour
         {
             return;
         }
+
+        // Set Buttons
+        prevSlideButton.interactable = (index != 0);
+        nextSlideButton.interactable = (index != maxIndex);
 
         var data = presentationDataList[index];
         if(data.isVideo == true)
