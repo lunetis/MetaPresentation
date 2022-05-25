@@ -21,6 +21,7 @@ namespace lobby{
         void Start(){
             host=0;
             guest=0;
+            map=1;
         }
         public override void OnConnectedToMaster()
         {
