@@ -14,7 +14,7 @@ namespace lobby{
         private int RoomSize;
         
         public static int host, guest;
-        public int map;
+        public static int map;
         public int[] room = new int[] { 0,0,0,0 };
 
         // Start is called before the first frame update

@@ -11,7 +11,8 @@ public class GameSetupController : MonoBehaviour
     public float SpawnTime;
     float timer;
     bool HasPlayerSpawned = false;
-    Vector3 VectorSpawnArena=new Vector3(2,2,1);
+    Vector3 VectorSpawnHostArea=new Vector3(110,5,140);
+    Vector3 VectorSpawnGuestArea=new Vector3(110,7,120);
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +33,10 @@ public class GameSetupController : MonoBehaviour
             if (!HasPlayerSpawned)
             {
                 if(QuickStartLobbyController.host==1){
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PhotonPlayer"), VectorSpawnArena, Quaternion.identity);
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PhotonPlayer"), VectorSpawnHostArea, Quaternion.identity);
                 }
                 else if(QuickStartLobbyController.guest==1){
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), VectorSpawnArena, Quaternion.identity);
-
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), VectorSpawnGuestArea, Quaternion.identity);
                 }
                 HasPlayerSpawned = true;
             }
