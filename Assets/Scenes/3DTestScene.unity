@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a22ed717969c046a9cebeae506ab3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnTime: 0
 --- !u!4 &376596114
 Transform:
   m_ObjectHideFlags: 0
@@ -445,6 +446,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1664801479251512217, guid: 33bdc58ea7b6a0c4f89aa550433ded77, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6643624476508115246, guid: 33bdc58ea7b6a0c4f89aa550433ded77, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -455,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643624476508115246, guid: 33bdc58ea7b6a0c4f89aa550433ded77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6379466
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6643624476508115246, guid: 33bdc58ea7b6a0c4f89aa550433ded77, type: 3}
       propertyPath: m_LocalPosition.z
