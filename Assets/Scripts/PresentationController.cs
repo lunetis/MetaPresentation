@@ -179,6 +179,10 @@ public class PresentationController : MonoBehaviour
         nextSlideButton.interactable = (index != maxIndex);
 
         var data = presentationDataList[index];
+
+        videoPlayer.enabled = (data.isVideo);
+        canvasVideoPlayer.enabled = (data.isVideo);
+
         if(data.isVideo == true)
         {
             keynoteRenderImage.texture = canvasVideoTexture;
@@ -190,12 +194,10 @@ public class PresentationController : MonoBehaviour
         }
         else
         {
-            if(videoPlayer.isPlaying == true)
-            {
-                canvasVideoPlayer.Stop();
-                videoPlayer.Stop();
-                videoStartPauseText.text = "▶";
-            }
+            canvasVideoPlayer.Stop();
+            videoPlayer.Stop();
+            
+            videoStartPauseText.text = "▶";
             keynoteRenderImage.texture = data.slideTexture;
             screenRenderer.material.mainTexture = data.slideTexture;
         }

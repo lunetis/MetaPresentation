@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -690,8 +690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 273, y: 163.16}
-  m_SizeDelta: {x: -541.16, y: -327.77}
+  m_AnchoredPosition: {x: -270, y: -160}
+  m_SizeDelta: {x: -540, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &98509602
 Animator:
@@ -1475,8 +1475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 271.79028, y: -164.03915}
-  m_SizeDelta: {x: -543.58057, y: -328.0783}
+  m_AnchoredPosition: {x: 270, y: 160}
+  m_SizeDelta: {x: -540, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209947468
 MonoBehaviour:
@@ -2850,8 +2850,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -277.0775, y: -164.03915}
-  m_SizeDelta: {x: -554.155, y: -328.0783}
+  m_AnchoredPosition: {x: 270, y: -160}
+  m_SizeDelta: {x: -540, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410958131
 MonoBehaviour:
@@ -3901,7 +3901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.019866943, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0.019836426, y: 0}
   m_SizeDelta: {x: -385.3946, y: -160.6861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600915246
@@ -4098,7 +4098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000030517578, y: 45.48999}
+  m_AnchoredPosition: {x: -0.000061035156, y: 45.48999}
   m_SizeDelta: {x: -0.00012207031, y: 90.979996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637653719
@@ -4655,8 +4655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 271.78998, y: 164.03915}
-  m_SizeDelta: {x: -543.57996, y: -328.0783}
+  m_AnchoredPosition: {x: -270, y: -160}
+  m_SizeDelta: {x: -540, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &758503344
 MonoBehaviour:
@@ -5556,7 +5556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -121.258514}
+  m_AnchoredPosition: {x: 0.000061035156, y: -121.258514}
   m_SizeDelta: {x: 0.00012207, y: -242.517}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &946618618
@@ -5886,8 +5886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -277.0775, y: 164.03915}
-  m_SizeDelta: {x: -554.155, y: -328.0783}
+  m_AnchoredPosition: {x: -270, y: 160}
+  m_SizeDelta: {x: -540, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1014783736
 MonoBehaviour:
@@ -8808,7 +8808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000030517578, y: 45.48999}
+  m_AnchoredPosition: {x: 0, y: 45.48999}
   m_SizeDelta: {x: -0.00012207031, y: 90.979996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678221097
@@ -8893,7 +8893,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000038147, y: -0.000013828}
-  m_SizeDelta: {x: 1097.7306, y: 656.1566}
+  m_SizeDelta: {x: 1080, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686610581
 MonoBehaviour:
@@ -9523,7 +9523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 1
-  sceneName: Arena
+  sceneName: PresentationTestScene
 --- !u!4 &1772340300
 Transform:
   m_ObjectHideFlags: 0
