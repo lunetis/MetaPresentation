@@ -10,13 +10,18 @@ public class PresentationCameraController : MonoBehaviour
     bool showKeynote = false;
     bool showPresenterWithKeynote = false;
     public Camera uiCamera;
+    public RenderTexture keynoteTexture;
 
     public GameObject subCameraView;
+    public GameObject subKeynoteView;
 
     Camera currentCamera;
 
     public GameObject cameraButtonPrefab;
     public Transform cameraButtonPanel;
+
+    public bool isPresenter = false;
+    public SlideSettingsUIController slideSettingsUIController;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +31,9 @@ public class PresentationCameraController : MonoBehaviour
 
         ChangeCamera(0);
         subCameraView.SetActive(showPresenterWithKeynote);
-        uiCamera.enabled = false;
 
         InitCameraButtonPanel();
+        uiCamera.enabled = false;
     }
 
     void InitCameraButtonPanel()
@@ -40,6 +45,12 @@ public class PresentationCameraController : MonoBehaviour
             button.GetComponent<RectTransform>().localScale = Vector3.one;
             button.GetComponent<CameraButton>().Init(this, i + 1, cameras[i].name);
         }
+    }
+
+
+    public void EnableSubKeynoteView()
+    {
+        uiCamera.enabled = true;
     }
 
     public void ChangeCamera(int index)
@@ -57,9 +68,37 @@ public class PresentationCameraController : MonoBehaviour
         currentCamera.targetTexture = (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
     }
 
+    void ToggleSubCameraView()
+    {
+        if(showKeynote == false)
+            return;
+
+        showPresenterWithKeynote = !showPresenterWithKeynote;
+
+        subCameraView.SetActive(showPresenterWithKeynote == true && showKeynote == true);
+        currentCamera.targetTexture = (showPresenterWithKeynote == true) ? subCameraRenderTexture : null;
+    }
+
+    void ToggleFullKeynoteView()
+    {
+        showKeynote = !showKeynote;
+
+        // Changing target texture will change view
+        uiCamera.targetTexture = (showKeynote == false) ? keynoteTexture : null;
+        currentCamera.targetTexture =  (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
+
+        subCameraView.SetActive(showPresenterWithKeynote == true && showKeynote == true);
+        subKeynoteView.SetActive(showKeynote == false);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(isPresenter == true && slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true)
+        {
+            return;
+        }
+
         // Camera Switch
         if(Input.GetKeyDown(KeyCode.F1))
         {
@@ -85,21 +124,13 @@ public class PresentationCameraController : MonoBehaviour
         // Sub camera view
         if(Input.GetKeyDown(KeyCode.O))
         {
-            if(showKeynote == false)
-                return;
-
-            showPresenterWithKeynote = !showPresenterWithKeynote;
-
-            subCameraView.SetActive(showPresenterWithKeynote);
-            currentCamera.targetTexture = (showPresenterWithKeynote == true) ? subCameraRenderTexture : null;
+            ToggleSubCameraView();
         }
 
         // Full view
         if(Input.GetKeyDown(KeyCode.P))
         {
-            showKeynote = !showKeynote;
-            uiCamera.enabled = showKeynote;
-            currentCamera.targetTexture =  (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
+            ToggleFullKeynoteView();
         }
     }
 }

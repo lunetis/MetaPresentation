@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using TMPro;
 
 public class SlideSettingsUIController : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class SlideSettingsUIController : MonoBehaviour
     public List<GameObject> slideSlots;
 
     public PresentationController presentationController;
+    public PresentationCameraController cameraController;
 
     public VideoPlayer videoPlayer;
     
     [HideInInspector]
     public Transform selectedSlot;
+
+    public TitleText titleTextScript;
+    public TMP_InputField titleInputField;
     
     
     // Used in init, resize
@@ -80,6 +85,17 @@ public class SlideSettingsUIController : MonoBehaviour
         ResizeScrollContent(dataList.Count);
         
         ChangeSlidePreviewImage(dataList[0], selectedSlot);
+    }
+
+
+    public void OnTitleTextChange()
+    {
+        if(titleTextScript == null)
+        {
+            titleTextScript = FindObjectOfType<TitleText>();
+        }
+
+        titleTextScript.titleText.text = titleInputField.text;
     }
 
     // If slideCount == -1, Counts child itself
@@ -146,13 +162,15 @@ public class SlideSettingsUIController : MonoBehaviour
         }
 
         presentationController.ApplyNewSlideList(currentIndices);
+        cameraController.EnableSubKeynoteView();
         Toggle();
     }
 
     public void Remove()
     {
+        int newCnt = scrollContent.transform.childCount - 1;
         Destroy(selectedSlot.gameObject);
-        ResizeScrollContent();
+        ResizeScrollContent(newCnt);
     }
 
     public void Toggle()
