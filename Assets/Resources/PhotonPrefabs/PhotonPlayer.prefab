@@ -91,6 +91,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 73cb3ae8fc1de47a0a307cb5f95ec701, type: 2}
   faceShowTime: 2
   crossFade: 0.2
+  lookCamera: {fileID: 0}
 --- !u!114 &600258015576872558
 MonoBehaviour:
   m_ObjectHideFlags: 0

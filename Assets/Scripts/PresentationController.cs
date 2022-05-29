@@ -40,7 +40,11 @@ public class PresentationController : MonoBehaviour
     public Button videoStopButton;
     public Button videoStartButton;
     public TMPro.TextMeshProUGUI videoStartPauseText;
+
+    [HideInInspector]
     public FaceController faceController;
+
+    PresentationData currentData;
 
 
     // Don't use preload textures: Load when showing other slides
@@ -52,6 +56,8 @@ public class PresentationController : MonoBehaviour
 
     int index = 0;
     int maxIndex = -1;
+
+    bool isVisibleCanvas = true;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +73,52 @@ public class PresentationController : MonoBehaviour
 
         videoPlayer.loopPointReached += CheckVideoPlayEnded;
         canvasVideoPlayer.loopPointReached += CheckVideoPlayEnded;
+    }
+
+
+    void Update()
+    {
+        if(slideSettingsUI != null && slideSettingsUI.gameObject.activeSelf == true)
+        {
+            return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            ShowNextSlide();
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(currentData.isVideo == true)
+            {
+                OnPlayOrPauseButtonClick();
+            }
+            else
+            {
+                ShowNextSlide();
+            }
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            isVisibleCanvas = !isVisibleCanvas;
+            SetUIVisible(isVisibleCanvas);
+        }
+    }
+
+    void SetUIVisible(bool visible)
+    {
+        var canvases = FindObjectsOfType<Canvas>();
+        foreach(Canvas canvas in canvases)
+        {
+            // If the renderMode is ScreenSpaceCamera, this canvas is Keynote view canvas. (Must be always enabled)
+            if(canvas.renderMode == RenderMode.ScreenSpaceCamera)
+                continue;
+
+            canvas.enabled = visible;
+        }
     }
 
 
@@ -180,6 +232,7 @@ public class PresentationController : MonoBehaviour
         nextSlideButton.interactable = (index != maxIndex);
 
         var data = presentationDataList[index];
+        currentData = data;
 
         videoPlayer.enabled = (data.isVideo);
         canvasVideoPlayer.enabled = (data.isVideo);

@@ -45,7 +45,8 @@ public class PresentationCameraController : MonoBehaviour
         cameraCount = 0;
         for(int i = 0; i < cameras.Count; i++)
         {
-            AddCamera(cameras[i]);
+            cameraCount++;
+            AddCameraButton(cameras[i]);
         }
     }
 
@@ -55,7 +56,12 @@ public class PresentationCameraController : MonoBehaviour
         {
             cameras.Add(camera);
         }
-        cameraCount += 1;
+        cameraCount++;
+        AddCameraButton(camera);
+    }
+
+    void AddCameraButton(Camera camera)
+    {
         GameObject button = Instantiate(cameraButtonPrefab);
         button.transform.SetParent(cameraButtonPanel);
         button.GetComponent<RectTransform>().localScale = Vector3.one;

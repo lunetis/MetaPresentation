@@ -8,6 +8,8 @@ public class CharacterSpawner : MonoBehaviour
     Transform presenterSpawnTransform;
 
     public GameObject testChar = null;
+    [Range(1, 10)]
+    public float scaleRange = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class CharacterSpawner : MonoBehaviour
 
         presenter.transform.position = presenterSpawnTransform.position;
         presenter.transform.rotation = presenterSpawnTransform.rotation;
+        presenter.transform.localScale *= scaleRange;
     }
 
     // Update is called once per frame

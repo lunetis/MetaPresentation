@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 129348069890131575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.08, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 5032667846024161714}
   - {fileID: 4814651910115848102}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa9f165e2b4f1a4f9522501717c095d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 10
+  Velocity: 6
   InputX: 0
   InputZ: 0
   desiredMoveDirection: {x: 0, y: 0, z: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   isGrounded: 0
   HorizontalAnimSmoothTime: 0.2
   VerticalAnimTime: 0.2
-  StartAnimTime: 0.3
+  StartAnimTime: 0
   StopAnimTime: 0.15
   verticalVel: -0.5
 --- !u!114 &8280541315545876362
