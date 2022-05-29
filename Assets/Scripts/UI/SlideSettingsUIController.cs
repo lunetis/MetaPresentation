@@ -23,8 +23,13 @@ public class SlideSettingsUIController : MonoBehaviour
     [HideInInspector]
     public Transform selectedSlot;
 
+    [HideInInspector]
+    public PresentationData selectedData;
+
     public TitleText titleTextScript;
     public TMP_InputField titleInputField;
+
+    public EmoteDropdown emoteDropdown;
     
     
     // Used in init, resize
@@ -37,6 +42,18 @@ public class SlideSettingsUIController : MonoBehaviour
         // videoPlayer = slidePreviewImage.GetComponent<VideoPlayer>();
         selectedSlot = null;
         gameObject.SetActive(false);
+        
+        if(titleTextScript == null)
+        {
+            titleTextScript = FindObjectOfType<TitleText>();
+            
+            // No title
+            if(titleTextScript == null)
+            {
+                titleInputField.interactable = false;
+            }
+        }
+    
     }
 
     public void Init(List<PresentationData> dataList)
@@ -90,11 +107,6 @@ public class SlideSettingsUIController : MonoBehaviour
 
     public void OnTitleTextChange()
     {
-        if(titleTextScript == null)
-        {
-            titleTextScript = FindObjectOfType<TitleText>();
-        }
-
         titleTextScript.titleText.text = titleInputField.text;
     }
 
@@ -132,6 +144,9 @@ public class SlideSettingsUIController : MonoBehaviour
         }
         
         selectedSlot = slotTransform;
+        selectedData = data;
+
+        emoteDropdown.SetSelectedDropdown(data);
     }
 
 

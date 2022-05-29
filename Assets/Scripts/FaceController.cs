@@ -12,18 +12,40 @@ public class FaceController : MonoBehaviour
     public float faceShowTime = 0;
     public float crossFade = 0.2f;
     float remainTime = 0;
+
+    public Camera lookCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        anim.SetLayerWeight(1, 1);
+        anim?.SetLayerWeight(1, 1);
 
         // Auto detect emoteUI
         var emoteUIController = FindObjectOfType<EmoteUIController>();
         emoteUIController?.InitEmoteButtonPanel(this);
+
+        var cameraController = FindObjectOfType<PresentationCameraController>();
+        cameraController?.SetVCamLookAt(transform);
+        
+        var presentationController = FindObjectOfType<PresentationController>();
+        presentationController.faceController = this;
+
+        EnlistLookCamera();
     }
 
-    public void PlayFaceAnim(int index)
+    protected void EnlistLookCamera()
+    {
+        if(lookCamera == null)
+            return;
+
+        PresentationCameraController camController = FindObjectOfType<PresentationCameraController>();
+
+        camController.AddCamera(lookCamera, true);
+    }
+
+    // Index must be 0 - animations.Length - 1
+    public virtual void PlayFaceAnim(int index)
     {
         if(index < 0 || index >= animations.Length)
             return;

@@ -13,6 +13,7 @@ public class PresentationData
     public bool isVideo;
     public Texture2D slideTexture;
     public string videoUrl;
+    public int slideEmoteIndex = 0;
 }
 
 public class PresentationController : MonoBehaviour
@@ -39,6 +40,7 @@ public class PresentationController : MonoBehaviour
     public Button videoStopButton;
     public Button videoStartButton;
     public TMPro.TextMeshProUGUI videoStartPauseText;
+    public FaceController faceController;
 
 
     // Don't use preload textures: Load when showing other slides
@@ -118,7 +120,6 @@ public class PresentationController : MonoBehaviour
 
             originalDataList.Add(data);
         }
-
         // Go to slide settings
         slideSettingsUI.Init(originalDataList);
         slideText.text = string.Format("Press 'Apply' to see presentations");
@@ -200,6 +201,12 @@ public class PresentationController : MonoBehaviour
             videoStartPauseText.text = "▶";
             keynoteRenderImage.texture = data.slideTexture;
             screenRenderer.material.mainTexture = data.slideTexture;
+        }
+        // Emote play
+        Debug.Log(data.slideEmoteIndex);
+        if(faceController != null)
+        {
+            faceController.PlayFaceAnim(data.slideEmoteIndex);
         }
 
         SetVideoButtonEnable(data.isVideo);

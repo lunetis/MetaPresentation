@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PresentationCameraController : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class PresentationCameraController : MonoBehaviour
     public bool isPresenter = false;
     public SlideSettingsUIController slideSettingsUIController;
 
+    public CinemachineVirtualCamera vCam;
+    int cameraCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,13 +42,29 @@ public class PresentationCameraController : MonoBehaviour
 
     void InitCameraButtonPanel()
     {
+        cameraCount = 0;
         for(int i = 0; i < cameras.Count; i++)
         {
-            GameObject button = Instantiate(cameraButtonPrefab);
-            button.transform.SetParent(cameraButtonPanel);
-            button.GetComponent<RectTransform>().localScale = Vector3.one;
-            button.GetComponent<CameraButton>().Init(this, i + 1, cameras[i].name);
+            AddCamera(cameras[i]);
         }
+    }
+
+    public void AddCamera(Camera camera, bool addToList = false)
+    {
+        if(addToList == true)
+        {
+            cameras.Add(camera);
+        }
+        cameraCount += 1;
+        GameObject button = Instantiate(cameraButtonPrefab);
+        button.transform.SetParent(cameraButtonPanel);
+        button.GetComponent<RectTransform>().localScale = Vector3.one;
+        button.GetComponent<CameraButton>().Init(this, cameraCount, camera.name);
+    }
+
+    public void SetVCamLookAt(Transform t)
+    {
+        vCam.LookAt = t;
     }
 
 
