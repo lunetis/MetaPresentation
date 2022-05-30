@@ -3366,6 +3366,7 @@ MonoBehaviour:
   videoStartButton: {fileID: 911201432}
   videoStartPauseText: {fileID: 119715096}
   faceController: {fileID: 0}
+  presenterUI: {fileID: 947589412}
 --- !u!4 &645634399
 Transform:
   m_ObjectHideFlags: 0
@@ -4051,28 +4052,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714308373}
-  - component: {fileID: 714308372}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Presenter Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &714308372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714308371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d22b95b882934848abbf57e5d5de631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testChar: {fileID: 129348069890131575, guid: d958c2f7aabd2974591df8a2190a9153, type: 3}
-  scaleRange: 1
 --- !u!4 &714308373
 Transform:
   m_ObjectHideFlags: 0
@@ -4117,6 +4103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTime: 1
+  hostSpawnTransform: {fileID: 714308373}
+  guestSpawnTransformList: []
 --- !u!4 &727034130
 Transform:
   m_ObjectHideFlags: 0
@@ -4629,7 +4617,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2011989654}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.71428573
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

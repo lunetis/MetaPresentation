@@ -120,7 +120,7 @@ public class PresentationCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPresenter == true && slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true)
+        if(PresentationController.IsHost() == false && slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true)
         {
             return;
         }

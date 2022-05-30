@@ -8,16 +8,24 @@ using lobby;
 
 public class GameSetupController : MonoBehaviour
 {
-    public float SpawnTime;
+    public float SpawnTime = 1;
     float timer;
     bool HasPlayerSpawned = false;
-    Vector3 VectorSpawnHostArea=new Vector3(110,5,140);
-    Vector3 VectorSpawnGuestArea=new Vector3(110,7,120);
+    public Transform hostSpawnTransform;
+    public List<Transform> guestSpawnTransformList;
+    int guestCount;
     // Start is called before the first frame update
     void Start()
     {
         CreatePlayer();
-        SpawnTime=1;
+        guestCount = 0;
+
+        // If not initialized, use hostSpawnTransform instead.
+        if(guestSpawnTransformList == null)
+        {
+            guestSpawnTransformList = new List<Transform>();
+            guestSpawnTransformList.Add(hostSpawnTransform);
+        }
     }
 
     private void CreatePlayer()
@@ -33,14 +41,28 @@ public class GameSetupController : MonoBehaviour
             if (!HasPlayerSpawned)
             {
                 if(QuickStartLobbyController.host==1){
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PhotonPlayer"), VectorSpawnHostArea, Quaternion.identity);
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", PresentationDataObject.characterObject.name), hostSpawnTransform.position, hostSpawnTransform.rotation);
                 }
                 else if(QuickStartLobbyController.guest==1){
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), VectorSpawnGuestArea, Quaternion.identity);
+                    Transform spawnTransform;
+                    if(guestCount > guestSpawnTransformList.Count)
+                    {
+                        Debug.LogWarning("Not enough guest spawn transforms!");
+                        spawnTransform = guestSpawnTransformList[guestSpawnTransformList.Count - 1];
+                    }
+                    else
+                    {
+                        spawnTransform = guestSpawnTransformList[guestCount];
+                    }
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), spawnTransform.position, spawnTransform.rotation);
+                    guestCount++;
                 }
                 HasPlayerSpawned = true;
             }
             timer = 0;
+
+            // Disable after spawn
+            this.enabled = false;
         }
     }
 }

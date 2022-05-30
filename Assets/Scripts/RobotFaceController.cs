@@ -60,6 +60,7 @@ public class RobotFaceController : FaceController
             break;
             
         case 4:
+            ChangeEyeOffset(EyePosition.normal);
             ChangeAnimatorIdle("dead");
             break;
 

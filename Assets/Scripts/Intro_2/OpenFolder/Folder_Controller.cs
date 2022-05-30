@@ -21,10 +21,8 @@ public class Folder_Controller : MonoBehaviour
     int index = 0;
     int maxIndex = -1;
 
-    void Start()
-    {
-        
-    }
+    public HostSettingsController hostSettingsController;
+
 
     public void ImportFolder()
     {
@@ -81,6 +79,7 @@ public class Folder_Controller : MonoBehaviour
         slideSettingsUI.Init(originalDataList);
 
         PresentationDataObject.data = originalDataList;
+        hostSettingsController.HasSelectedFolder = true;
     }
 
 

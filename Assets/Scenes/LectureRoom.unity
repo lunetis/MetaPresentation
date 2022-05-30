@@ -2042,6 +2042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTime: 1
+  hostSpawnTransform: {fileID: 1064087053}
+  guestSpawnTransformList: []
 --- !u!4 &314531081
 Transform:
   m_ObjectHideFlags: 0
@@ -5718,7 +5720,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 63448327}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.71428573
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6122,9 +6124,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1064087053}
-  - component: {fileID: 1064087054}
   m_Layer: 0
-  m_Name: PresenterSpawner
+  m_Name: Presenter Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6144,20 +6145,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1064087054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064087052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d22b95b882934848abbf57e5d5de631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testChar: {fileID: 129348069890131575, guid: d958c2f7aabd2974591df8a2190a9153, type: 3}
-  scaleRange: 1
 --- !u!1001 &1064510229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6518,6 +6505,7 @@ MonoBehaviour:
   videoStartButton: {fileID: 1272316382}
   videoStartPauseText: {fileID: 32393991}
   faceController: {fileID: 0}
+  presenterUI: {fileID: 1100416347}
 --- !u!4 &1170209819
 Transform:
   m_ObjectHideFlags: 0

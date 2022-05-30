@@ -10595,6 +10595,7 @@ MonoBehaviour:
   videoStartButton: {fileID: 1832581470}
   videoStartPauseText: {fileID: 1416618657}
   faceController: {fileID: 0}
+  presenterUI: {fileID: 2062856549}
 --- !u!1001 &1511774479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13905,6 +13906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testChar: {fileID: 129348069890131575, guid: d958c2f7aabd2974591df8a2190a9153, type: 3}
+  scaleRange: 1
 --- !u!1001 &1957717510
 PrefabInstance:
   m_ObjectHideFlags: 0

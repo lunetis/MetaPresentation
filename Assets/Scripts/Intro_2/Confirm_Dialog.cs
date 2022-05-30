@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Confirm_Dialog : MonoBehaviour
 {
     public Transform box;
     public CanvasGroup background;
+
+    public Text mapText;
+    public Text characterText;
+
     private void OnEnable()
     {
         background.alpha = 0;
@@ -24,5 +29,16 @@ public class Confirm_Dialog : MonoBehaviour
     void OnComplete()
     {
         gameObject.SetActive(false);
+    }
+
+    
+    public void ChangeMapText(string mapName)
+    {
+        mapText.text = "Map : " + mapName;
+    }
+
+    public void ChangeCharacterText(string characterName)
+    {
+        characterText.text = "Character : " + characterName;
     }
 }

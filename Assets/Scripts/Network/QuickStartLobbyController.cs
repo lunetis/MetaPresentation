@@ -80,20 +80,10 @@ namespace lobby{
             print("Guest Set");
             guest=1;
         }
-        public void SetMap1()
+        public void SetMap(int mapIndex)
         {
-            print("Map1 Set");
-            map=1;
-        }
-        public void SetMap2()
-        {
-            print("Map2 Set");
-            map=2;
-        }
-        public void SetMap3()
-        {
-            print("Map3 Set");
-            map=3;
+            print("Map " + mapIndex + " Set");
+            map = mapIndex;
         }
     }
 }

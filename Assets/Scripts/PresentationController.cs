@@ -7,6 +7,8 @@ using SFB;
 using System.IO;
 using TMPro;
 using System.Linq;
+using lobby;
+
 
 public class PresentationData
 {
@@ -44,24 +46,32 @@ public class PresentationController : MonoBehaviour
     [HideInInspector]
     public FaceController faceController;
 
-    PresentationData currentData;
+    public GameObject presenterUI;
 
 
-    // Don't use preload textures: Load when showing other slides
+    // Internal data
     string[] slidePaths;
 
     // Use preload textures: Load when import folder
     List<PresentationData> originalDataList;
     List<PresentationData> presentationDataList;
+    
 
     int index = 0;
     int maxIndex = -1;
+    PresentationData currentData;
 
     bool isVisibleCanvas = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(PresentationController.IsHost() == false)
+        {
+            presenterUI.SetActive(false);
+            return;
+        }
+
         slideText.text = "Press \"Open Folder\" to import";
         // videoPlayer = screenRenderer.GetComponent<VideoPlayer>();
 
@@ -377,5 +387,13 @@ public class PresentationController : MonoBehaviour
     void CheckVideoPlayEnded(VideoPlayer vp)
     {
         videoStartPauseText.text = "▶";
+    }
+
+
+    
+
+    public static bool IsHost()
+    {
+        return QuickStartLobbyController.host == 1;
     }
 }

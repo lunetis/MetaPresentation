@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 8280541315877830818}
   - component: {fileID: 8280541315877830817}
   - component: {fileID: 8280541315545876362}
+  - component: {fileID: 7736999342785381475}
+  - component: {fileID: -3491636184333666551}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -129,7 +131,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_Center: {x: 0, y: 0.89, z: 0}
 --- !u!114 &8280541315877830818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +211,44 @@ MonoBehaviour:
   - {r: 0.72790754, g: 2, b: 0.26178014, a: 1}
   - {r: 2, g: 0.87978274, b: 0.26178014, a: 1}
   eyeState: 0
+--- !u!114 &7736999342785381475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129348069890131575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-3491636184333666551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129348069890131575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!1 &140244518849360402
 GameObject:
   m_ObjectHideFlags: 0
