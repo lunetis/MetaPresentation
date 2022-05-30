@@ -1341,7 +1341,7 @@ Transform:
   m_GameObject: {fileID: 8477369412858894947}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.33, y: 0.5, z: -1.36}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 8477369412858463753}
   - {fileID: 8477369412858464203}
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   lookSmoother: 3
   useCurves: 1
   useCurvesHeight: 0.5
-  forwardSpeed: 20
+  forwardSpeed: 50
   backwardSpeed: 20
   rotateSpeed: 5
   jumpPower: 2
