@@ -22,6 +22,8 @@ public class Folder_Controller : MonoBehaviour
     int maxIndex = -1;
 
     public HostSettingsController hostSettingsController;
+    public GameObject slidePreviewButton;
+    public GameObject slidePreviewUI;
 
 
     public void ImportFolder()
@@ -80,6 +82,7 @@ public class Folder_Controller : MonoBehaviour
 
         PresentationDataObject.data = originalDataList;
         hostSettingsController.HasSelectedFolder = true;
+        slidePreviewButton?.SetActive(true);
     }
 
 
@@ -103,5 +106,10 @@ public class Folder_Controller : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public void OnPreviewClick()
+    {
+        slidePreviewUI.SetActive(!slidePreviewUI.activeSelf);
     }
 }

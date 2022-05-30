@@ -8,8 +8,6 @@ using lobby;
 
 public class GameSetupController : MonoBehaviour
 {
-    public float SpawnTime = 1;
-    float timer;
     bool HasPlayerSpawned = false;
     public Transform hostSpawnTransform;
     public List<Transform> guestSpawnTransformList;
@@ -17,7 +15,7 @@ public class GameSetupController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreatePlayer();
+        // CreatePlayer();
         guestCount = 0;
 
         // If not initialized, use hostSpawnTransform instead.
@@ -26,43 +24,45 @@ public class GameSetupController : MonoBehaviour
             guestSpawnTransformList = new List<Transform>();
             guestSpawnTransformList.Add(hostSpawnTransform);
         }
+
+        StartCoroutine(CreatePlayerCoroutine());
+    }
+    
+
+    IEnumerator CreatePlayerCoroutine()
+    {
+        while(PhotonNetwork.NetworkClientState != ClientState.Joined)
+        {
+            yield return null;
+        }
+
+        CreatePlayer();
     }
 
     private void CreatePlayer()
     {
-        print("Creating Player");
-        //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PhotonPlayer"),Vector3.zero,Quaternion.identity);
-    }
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if(timer >= SpawnTime)
+        if (!HasPlayerSpawned)
         {
-            if (!HasPlayerSpawned)
-            {
-                if(QuickStartLobbyController.host==1){
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", PresentationDataObject.characterObject.name), hostSpawnTransform.position, hostSpawnTransform.rotation);
-                }
-                else if(QuickStartLobbyController.guest==1){
-                    Transform spawnTransform;
-                    if(guestCount > guestSpawnTransformList.Count)
-                    {
-                        Debug.LogWarning("Not enough guest spawn transforms!");
-                        spawnTransform = guestSpawnTransformList[guestSpawnTransformList.Count - 1];
-                    }
-                    else
-                    {
-                        spawnTransform = guestSpawnTransformList[guestCount];
-                    }
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), spawnTransform.position, spawnTransform.rotation);
-                    guestCount++;
-                }
-                HasPlayerSpawned = true;
+            if(QuickStartLobbyController.host==1){
+                print("Creating Host...");
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", PresentationDataObject.characterObject.name), hostSpawnTransform.position, hostSpawnTransform.rotation);
             }
-            timer = 0;
-
-            // Disable after spawn
-            this.enabled = false;
+            else if(QuickStartLobbyController.guest==1){
+                print("Creating Guest...");
+                Transform spawnTransform;
+                if(guestCount > guestSpawnTransformList.Count)
+                {
+                    Debug.LogWarning("Not enough guest spawn transforms!");
+                    spawnTransform = guestSpawnTransformList[guestSpawnTransformList.Count - 1];
+                }
+                else
+                {
+                    spawnTransform = guestSpawnTransformList[guestCount];
+                }
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), spawnTransform.position, spawnTransform.rotation);
+                guestCount++;
+            }
+            HasPlayerSpawned = true;
         }
     }
 }

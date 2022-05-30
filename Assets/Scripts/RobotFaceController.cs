@@ -27,7 +27,7 @@ public class RobotFaceController : FaceController
         emoteUIController?.InitEmoteButtonPanel(this, animationNames);
 
         var cameraController = FindObjectOfType<PresentationCameraController>();
-        cameraController?.SetVCamLookAt(transform);
+        cameraController?.SetVCamLookAt(lookCamera.transform);
         
         var presentationController = FindObjectOfType<PresentationController>();
         presentationController.faceController = this;

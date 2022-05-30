@@ -26,7 +26,7 @@ public class FaceController : MonoBehaviour
         emoteUIController?.InitEmoteButtonPanel(this);
 
         var cameraController = FindObjectOfType<PresentationCameraController>();
-        cameraController?.SetVCamLookAt(transform);
+        cameraController?.SetVCamLookAt(lookCamera.transform);
         
         var presentationController = FindObjectOfType<PresentationController>();
         presentationController.faceController = this;

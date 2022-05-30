@@ -28,6 +28,10 @@ public class PresentationCameraController : MonoBehaviour
     int cameraCount;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        uiCamera.enabled = false;
+    }
     void Start()
     {
         showPresenterWithKeynote = false;
@@ -37,7 +41,6 @@ public class PresentationCameraController : MonoBehaviour
         subCameraView.SetActive(showPresenterWithKeynote);
 
         InitCameraButtonPanel();
-        uiCamera.enabled = false;
     }
 
     void InitCameraButtonPanel()
@@ -120,7 +123,7 @@ public class PresentationCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PresentationController.IsHost() == false && slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true)
+        if(PresentationController.IsHost() == false || (slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true))
         {
             return;
         }

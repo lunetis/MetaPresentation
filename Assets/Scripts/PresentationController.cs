@@ -201,6 +201,7 @@ public class PresentationController : MonoBehaviour
         // Apply automatically
         List<int> indices = Enumerable.Range(1, originalDataList.Count).ToList();
         ApplyNewSlideList(indices);
+        slideSettingsUI.cameraController.EnableSubKeynoteView();
     }
 
     public void ShowNextSlide()

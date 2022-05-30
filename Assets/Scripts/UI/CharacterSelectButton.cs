@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelectButton : MonoBehaviour
 {
     public GameObject characterObject;
+    public RawImage characterImage;
+
+    public Texture characterTexture;
 
     public void OnClick()
     {
@@ -14,5 +18,7 @@ public class CharacterSelectButton : MonoBehaviour
             return;
         }
         PresentationDataObject.characterObject = characterObject;
+        characterImage.texture = characterTexture;
+        characterImage.transform.parent.gameObject.SetActive(true);
     }
 }
