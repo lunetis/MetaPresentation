@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 namespace UnityChan
 {
 // 必要なコンポーネントの列記
@@ -13,7 +14,7 @@ namespace UnityChan
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Rigidbody))]
 
-	public class UnityChanControlScriptWithRgidBody : MonoBehaviour
+	public class UnityChanControlScriptWithRgidBody : MonoBehaviour 
 	{
 
 		public float animSpeed = 1.5f;				// アニメーション再生速度設定
