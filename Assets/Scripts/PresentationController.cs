@@ -9,6 +9,8 @@ using TMPro;
 using System.Linq;
 using lobby;
 
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PresentationData
 {
@@ -18,7 +20,7 @@ public class PresentationData
     public int slideEmoteIndex = 0;
 }
 
-public class PresentationController : MonoBehaviour
+public class PresentationController : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     MeshRenderer screenRenderer;
@@ -48,13 +50,17 @@ public class PresentationController : MonoBehaviour
 
     public GameObject presenterUI;
 
+    public bool isReady = false;
+
+    public PhotonView pv;
+
 
     // Internal data
     string[] slidePaths;
 
     // Use preload textures: Load when import folder
-    List<PresentationData> originalDataList;
-    List<PresentationData> presentationDataList;
+    public List<PresentationData> originalDataList;
+    public List<PresentationData> presentationDataList;
     
 
     int index = 0;
@@ -69,6 +75,8 @@ public class PresentationController : MonoBehaviour
         if(PresentationController.IsHost() == false)
         {
             presenterUI.SetActive(false);
+            // Request current slide if guest
+            StartCoroutine(RequestSlideData());
             return;
         }
 
@@ -83,6 +91,7 @@ public class PresentationController : MonoBehaviour
 
         videoPlayer.loopPointReached += CheckVideoPlayEnded;
         canvasVideoPlayer.loopPointReached += CheckVideoPlayEnded;
+
     }
 
 
@@ -204,6 +213,7 @@ public class PresentationController : MonoBehaviour
         slideSettingsUI.cameraController.EnableSubKeynoteView();
     }
 
+    
     public void ShowNextSlide()
     {
         index = Mathf.Clamp(index + 1, 0, maxIndex);
@@ -235,6 +245,7 @@ public class PresentationController : MonoBehaviour
     {
         if(maxIndex == -1 || presentationDataList == null)
         {
+            Debug.Log(maxIndex + " // " + presentationDataList);
             return;
         }
 
@@ -267,7 +278,6 @@ public class PresentationController : MonoBehaviour
             screenRenderer.material.mainTexture = data.slideTexture;
         }
         // Emote play
-        Debug.Log(data.slideEmoteIndex);
         if(faceController != null)
         {
             faceController.PlayFaceAnim(data.slideEmoteIndex);
@@ -276,6 +286,11 @@ public class PresentationController : MonoBehaviour
         SetVideoButtonEnable(data.isVideo);
         
         slideText.text = string.Format("Slide {0} / {1}", index + 1, maxIndex + 1);
+        isReady = true;
+
+
+        // Send Texture when changing slides
+        SendTextureToClient();
     }
 
     IEnumerable<string> GetSlidesFromFolder(string folderPath)
@@ -389,12 +404,48 @@ public class PresentationController : MonoBehaviour
     {
         videoStartPauseText.text = "▶";
     }
-
-
     
 
     public static bool IsHost()
     {
         return QuickStartLobbyController.host == 1;
+    }
+    
+
+    // Photon functions
+    IEnumerator RequestSlideData()
+    {
+        while(PhotonNetwork.NetworkClientState != ClientState.Joined)
+        {
+            yield return null;
+        }
+
+        pv.RPC("SendTextureToClient", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    void SendTextureToClient()
+    {
+        if(IsHost() == true)
+        {
+            Debug.Log("Sending Textures...");
+            pv.RPC("ReceiveTexture", RpcTarget.Others, presentationDataList[index].slideTexture.EncodeToPNG());
+        }
+    }
+
+    [PunRPC]
+    void ReceiveTexture(byte[] receivedByte)
+    {
+        var receivedTexture = new Texture2D(1, 1);
+        receivedTexture.LoadImage(receivedByte);
+        ShowSlideWithTexture(receivedTexture);
+    }
+
+    // Warning: Video is not supported
+    void ShowSlideWithTexture(Texture2D texture)
+    {
+        Debug.Log("Receiving Textures...");
+        keynoteRenderImage.texture = texture;
+        screenRenderer.material.mainTexture = texture;
     }
 }

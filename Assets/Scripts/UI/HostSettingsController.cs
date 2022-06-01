@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class HostSettingsController : MonoBehaviour
 {
-    static int UNDEFINED = -1;
-
     bool hasSelectedMap = false;
     bool hasSelectedFolder = false;
     bool hasSelectedCharacter = false;

@@ -22,6 +22,10 @@ public class GameSetupController : MonoBehaviour
         if(guestSpawnTransformList == null)
         {
             guestSpawnTransformList = new List<Transform>();
+        }
+
+        if(guestSpawnTransformList.Count == 0)
+        {
             guestSpawnTransformList.Add(hostSpawnTransform);
         }
 
@@ -50,15 +54,19 @@ public class GameSetupController : MonoBehaviour
             else if(QuickStartLobbyController.guest==1){
                 print("Creating Guest...");
                 Transform spawnTransform;
-                if(guestCount > guestSpawnTransformList.Count)
+                Debug.Log(guestCount);
+
+                if(guestCount > guestSpawnTransformList.Count || guestSpawnTransformList.Count == 0)
                 {
                     Debug.LogWarning("Not enough guest spawn transforms!");
-                    spawnTransform = guestSpawnTransformList[guestSpawnTransformList.Count - 1];
+                    spawnTransform = guestSpawnTransformList[0];
                 }
                 else
                 {
                     spawnTransform = guestSpawnTransformList[guestCount];
                 }
+                
+                Debug.Log(spawnTransform.position);
                 PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Cow"), spawnTransform.position, spawnTransform.rotation);
                 guestCount++;
             }
