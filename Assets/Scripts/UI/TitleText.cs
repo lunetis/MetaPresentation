@@ -13,5 +13,8 @@ public class TitleText : MonoBehaviour
         {
             titleText = GetComponent<TextMeshProUGUI>();
         }
+
+        // Clear at init
+        titleText.text = "";
     }
 }

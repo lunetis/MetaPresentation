@@ -91,7 +91,11 @@ public class PresentationController : MonoBehaviourPunCallbacks
 
         videoPlayer.loopPointReached += CheckVideoPlayEnded;
         canvasVideoPlayer.loopPointReached += CheckVideoPlayEnded;
-
+        
+        if(pv == null)
+        {
+            pv = GetComponent<PhotonView>();
+        }
     }
 
 

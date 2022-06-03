@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HostSettingsController : MonoBehaviour
+public class GuestSettingsController : MonoBehaviour
 {
     bool hasSelectedMap = false;
-    bool hasSelectedFolder = false;
-    bool hasSelectedCharacter = false;
+    bool hasSelectedCharacter = true;
 
     public Button startButton;
 
@@ -16,11 +15,7 @@ public class HostSettingsController : MonoBehaviour
         get { return hasSelectedMap; }
         set { hasSelectedMap = value; CheckStartConditions(); }
     }
-    public bool HasSelectedFolder
-    {
-        get { return hasSelectedFolder; }
-        set { hasSelectedFolder = value; CheckStartConditions(); }
-    }
+
     public bool HasSelectedCharacter
     {
         get { return hasSelectedCharacter; }
@@ -29,7 +24,7 @@ public class HostSettingsController : MonoBehaviour
     
     void CheckStartConditions()
     {
-        if(hasSelectedMap == true && hasSelectedFolder == true && hasSelectedCharacter == true)
+        if(hasSelectedMap == true && hasSelectedCharacter == true)
         {
             startButton.interactable = true;
         }
@@ -38,12 +33,6 @@ public class HostSettingsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Clear data object
-        if(PresentationDataObject.data != null)
-        {
-            PresentationDataObject.data.Clear();
-        }
-        
-        PresentationDataObject.hostObject = null;
+        PresentationDataObject.guestObject = null;
     }
 }

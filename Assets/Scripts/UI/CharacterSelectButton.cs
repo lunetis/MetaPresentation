@@ -17,7 +17,7 @@ public class CharacterSelectButton : MonoBehaviour
             Debug.LogWarning("No character object in the button");
             return;
         }
-        PresentationDataObject.characterObject = characterObject;
+        PresentationDataObject.hostObject = characterObject;
         characterImage.texture = characterTexture;
         characterImage.transform.parent.gameObject.SetActive(true);
     }

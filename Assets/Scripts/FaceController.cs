@@ -29,9 +29,25 @@ public class FaceController : MonoBehaviour
         cameraController?.SetVCamLookAt(lookCamera.transform);
         
         var presentationController = FindObjectOfType<PresentationController>();
-        presentationController.faceController = this;
+        if(presentationController != null)
+        {
+            presentationController.faceController = this;
+        }
+        
 
-        EnlistLookCamera();
+        // EnlistLookCamera();
+
+
+        // Unity-Chan only
+        if(PresentationController.IsHost() == false)
+        {
+            Sit();
+        }
+    }
+
+    void Sit()
+    {
+        anim.SetLayerWeight(3, 1);
     }
 
     protected void EnlistLookCamera()
@@ -40,8 +56,7 @@ public class FaceController : MonoBehaviour
             return;
 
         PresentationCameraController camController = FindObjectOfType<PresentationCameraController>();
-
-        camController.AddCamera(lookCamera, true);
+        camController?.AddCamera(lookCamera, true);
     }
 
     // Index must be 0 - animations.Length - 1

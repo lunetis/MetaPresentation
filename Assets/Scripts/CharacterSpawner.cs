@@ -23,12 +23,12 @@ public class CharacterSpawner : MonoBehaviour
 
     public void SpawnPresenter()
     {
-        if(PresentationDataObject.characterObject == null)
+        if(PresentationDataObject.hostObject == null)
         {
-            PresentationDataObject.characterObject = testChar;
+            PresentationDataObject.hostObject = testChar;
         }
 
-        GameObject presenter = Instantiate(PresentationDataObject.characterObject);
+        GameObject presenter = Instantiate(PresentationDataObject.hostObject);
 
         presenter.transform.position = presenterSpawnTransform.position;
         presenter.transform.rotation = presenterSpawnTransform.rotation;

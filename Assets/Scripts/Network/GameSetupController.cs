@@ -47,7 +47,7 @@ public class GameSetupController : MonoBehaviour
         {
             if(QuickStartLobbyController.host==1){
                 print("Creating Host...");
-                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", PresentationDataObject.characterObject.name), hostSpawnTransform.position, hostSpawnTransform.rotation);
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", PresentationDataObject.hostObject.name), hostSpawnTransform.position, hostSpawnTransform.rotation);
             }
             else if(QuickStartLobbyController.guest==1){
                 print("Creating Guest...");
