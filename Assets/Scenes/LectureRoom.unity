@@ -6487,7 +6487,7 @@ MonoBehaviour:
   faceController: {fileID: 0}
   presenterUI: {fileID: 1100416347}
   isReady: 0
-  pv: {fileID: 0}
+  pv: {fileID: 1170209820}
 --- !u!4 &1170209819
 Transform:
   m_ObjectHideFlags: 0
