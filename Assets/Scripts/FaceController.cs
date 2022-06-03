@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class FaceController : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class FaceController : MonoBehaviour
     float remainTime = 0;
 
     public Camera lookCamera;
+    protected PhotonView pv;
 
     // Start is called before the first frame update
     void Start()
     {
+        pv = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
         anim?.SetLayerWeight(1, 1);
 
@@ -33,10 +36,8 @@ public class FaceController : MonoBehaviour
         {
             presentationController.faceController = this;
         }
-        
 
-        // EnlistLookCamera();
-
+        EnlistLookCamera();
 
         // Unity-Chan only
         if(PresentationController.IsHost() == false)
@@ -52,6 +53,9 @@ public class FaceController : MonoBehaviour
 
     protected void EnlistLookCamera()
     {
+        if(pv.IsMine == false)
+            return;
+
         if(lookCamera == null)
             return;
 
@@ -62,6 +66,9 @@ public class FaceController : MonoBehaviour
     // Index must be 0 - animations.Length - 1
     public virtual void PlayFaceAnim(int index)
     {
+        if(pv.IsMine == false)
+            return;
+
         if(index < 0 || index >= animations.Length)
             return;
 

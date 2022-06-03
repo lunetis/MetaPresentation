@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 //This script requires you to have setup your animator with 3 parameters, "InputMagnitude", "InputX", "InputZ"
 //With a blend tree to control the inputmagnitude and allow blending between animations.
@@ -36,11 +37,14 @@ public class MovementInput : MonoBehaviour {
     public float verticalVel;
     private Vector3 moveVector;
 
+	PhotonView pv;
+
 	// Use this for initialization
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		cam = Camera.main;
 		controller = this.GetComponent<CharacterController> ();
+		pv = GetComponent<PhotonView>();
 	}
 	
 	// Update is called once per frame
@@ -102,6 +106,10 @@ public class MovementInput : MonoBehaviour {
     }
 
 	void InputMagnitude() {
+		
+		if(pv.IsMine == false)
+			return;
+
 		//Calculate Input Vectors
 		InputX = Input.GetAxis ("Horizontal");
 		InputZ = Input.GetAxis ("Vertical");

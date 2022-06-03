@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 1887936246687479912}
   - component: {fileID: -4952726622974510700}
   - component: {fileID: -5254503387680188837}
+  - component: {fileID: 5636704656740421549}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -320,6 +321,7 @@ Transform:
   - {fileID: 8247416979706593454}
   - {fileID: 9083384133915949084}
   - {fileID: 297659397728779843}
+  - {fileID: 5595687145505400066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.525, z: 0}
@@ -343,6 +345,8 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -5254503387680188837}
+  - {fileID: 5636704656740421549}
+  - {fileID: 2909555041359166455}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -362,6 +366,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &5636704656740421549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258928375122387666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4657245be1cab249a570a3dd2445811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookCamera: {fileID: 2124645998106791378}
+  maxCameraAngle: 60
+  sensitivity: 1
+  head: {fileID: 62997162602615548}
 --- !u!1 &1314787115891436282
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +444,89 @@ Transform:
   m_Father: {fileID: 1887936246687479912}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1907338000816660365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5595687145505400066}
+  - component: {fileID: 2124645998106791378}
+  - component: {fileID: 3834458196664394104}
+  m_Layer: 0
+  m_Name: Cow Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5595687145505400066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907338000816660365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.92, z: 1.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1887936246687479912}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2124645998106791378
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907338000816660365}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &3834458196664394104
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907338000816660365}
+  m_Enabled: 1
 --- !u!1 &2224195315099347657
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 62997162602615548}
+  - component: {fileID: 2909555041359166455}
   m_Layer: 0
   m_Name: cowjoins:joint4
   m_TagString: Untagged
@@ -824,6 +928,22 @@ Transform:
   m_Father: {fileID: 3350610430588148145}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2909555041359166455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547283644609716850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &4716807935803627880
 GameObject:
   m_ObjectHideFlags: 0

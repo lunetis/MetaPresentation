@@ -5,7 +5,7 @@
 //
 using UnityEngine;
 using System.Collections;
-
+using Photon.Pun;
 
 namespace UnityChan
 {
@@ -16,7 +16,6 @@ namespace UnityChan
 
 	public class UnityChanControlScriptWithRgidBody : MonoBehaviour 
 	{
-
 		public float animSpeed = 1.5f;				// アニメーション再生速度設定
 		public float lookSmoother = 3.0f;			// a smoothing setting for camera motion
 		public bool useCurves = true;				// Mecanimでカーブ調整を使うか設定する
@@ -53,6 +52,8 @@ namespace UnityChan
 
 		[Range(0.15f, 1)]
 		public float walkRunRange = 0.15f;
+		
+		PhotonView pv;
 
 		// 初期化
 		void Start ()
@@ -67,12 +68,17 @@ namespace UnityChan
 			// CapsuleColliderコンポーネントのHeight、Centerの初期値を保存する
 			orgColHight = col.height;
 			orgVectColCenter = col.center;
+
+			pv = GetComponent<PhotonView>();
 		}
 	
 	
 		// 以下、メイン処理.リジッドボディと絡めるので、FixedUpdate内で処理を行う.
 		void FixedUpdate ()
 		{
+			if(pv.IsMine == false)
+				return;
+				
 			float h = Input.GetAxis ("Horizontal");				// 入力デバイスの水平軸をhで定義
 			float v = Input.GetAxis ("Vertical") * walkRunRange;				// 入力デバイスの垂直軸をvで定義
 			anim.SetFloat ("Speed", v);							// Animator側で設定している"Speed"パラメタにvを渡す

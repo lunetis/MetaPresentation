@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnityChan
       objectReference: {fileID: 0}
+    - target: {fileID: 8477369412858894947, guid: 490a0059ed9aa9947b29c53db811b1e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 490a0059ed9aa9947b29c53db811b1e7, type: 3}
 --- !u!1 &376596112
@@ -408,6 +412,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 24.787, y: 180, z: 0}
+--- !u!1001 &1397135701
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4952726622974510700, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258928375122387666, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_Name
+      value: Cow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887936246687479912, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636704656740421549, guid: bab55df16032947469d124ffbb79944e, type: 3}
+      propertyPath: maxCameraAngle
+      value: 60
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bab55df16032947469d124ffbb79944e, type: 3}
 --- !u!1001 &1686878517
 PrefabInstance:
   m_ObjectHideFlags: 0

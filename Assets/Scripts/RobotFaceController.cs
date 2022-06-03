@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RobotFaceController : FaceController
 {
@@ -32,11 +33,16 @@ public class RobotFaceController : FaceController
         var presentationController = FindObjectOfType<PresentationController>();
         presentationController.faceController = this;
 
+        pv = GetComponent<PhotonView>();
+
         EnlistLookCamera();
     }
 
     public override void PlayFaceAnim(int index)
     {
+        if(pv.IsMine == false)
+            return;
+            
         switch(index)
         {
         case 0:
