@@ -432,7 +432,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
     {
         if(IsHost() == true)
         {
-            Debug.Log("Sending Textures...");
             pv.RPC("ReceiveTexture", RpcTarget.Others, presentationDataList[index].slideTexture.EncodeToPNG());
         }
     }
@@ -448,7 +447,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
     // Warning: Video is not supported
     void ShowSlideWithTexture(Texture2D texture)
     {
-        Debug.Log("Receiving Textures...");
         keynoteRenderImage.texture = texture;
         screenRenderer.material.mainTexture = texture;
     }

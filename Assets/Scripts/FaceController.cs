@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class FaceController : MonoBehaviour
+public class FaceController : MonoBehaviourPunCallbacks
 {
     public AnimationClip[] animations;
 

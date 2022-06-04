@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class RobotFaceController : FaceController
 {
@@ -46,26 +47,31 @@ public class RobotFaceController : FaceController
         switch(index)
         {
         case 0:
+            pv.RPC("ChangeEyeOffset", RpcTarget.Others, EyePosition.normal);
             ChangeEyeOffset(EyePosition.normal);
             ChangeAnimatorIdle("normal");
             break;
 
         case 1:
+            pv.RPC("ChangeEyeOffset", RpcTarget.Others, EyePosition.angry);
             ChangeEyeOffset(EyePosition.angry);
             ChangeAnimatorIdle("angry");
             break;
 
         case 2:
+            pv.RPC("ChangeEyeOffset", RpcTarget.Others, EyePosition.happy);
             ChangeEyeOffset(EyePosition.happy);
             ChangeAnimatorIdle("happy");
             break;
 
         case 3:
+            pv.RPC("ChangeEyeOffset", RpcTarget.Others, EyePosition.dead);
             ChangeEyeOffset(EyePosition.dead);
             ChangeAnimatorIdle("dead");
             break;
             
         case 4:
+            pv.RPC("ChangeEyeOffset", RpcTarget.Others, EyePosition.normal);
             ChangeEyeOffset(EyePosition.normal);
             ChangeAnimatorIdle("dead");
             break;
@@ -116,6 +122,7 @@ public class RobotFaceController : FaceController
         }
     }
 
+    [PunRPC]
     void ChangeEyeOffset(EyePosition pos)
     {
         Vector2 offset = Vector2.zero;
