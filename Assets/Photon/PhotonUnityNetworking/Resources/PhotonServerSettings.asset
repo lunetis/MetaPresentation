@@ -46,6 +46,11 @@ MonoBehaviour:
   - ReceiveTexture
   - SendTextureToClient
   - ChangeEyeOffset
+  - SendTextToClient
+  - ReceiveText
+  - CantHearYou
+  - ChangeColour
+  - HeresWhy
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

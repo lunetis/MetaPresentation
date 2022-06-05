@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: -4952726622974510700}
   - component: {fileID: -5254503387680188837}
   - component: {fileID: 5636704656740421549}
+  - component: {fileID: 611792197954007990}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -382,6 +383,25 @@ MonoBehaviour:
   maxCameraAngle: 60
   sensitivity: 1
   head: {fileID: 62997162602615548}
+--- !u!114 &611792197954007990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258928375122387666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logLevel: 2
+  ignoreGlobalLogLevel: 0
+  recorderInUse: {fileID: 0}
+  speakerInUse: {fileID: 0}
+  AutoCreateRecorderIfNotFound: 0
+  UsePrimaryRecorder: 1
+  SetupDebugSpeaker: 1
 --- !u!1 &1314787115891436282
 GameObject:
   m_ObjectHideFlags: 0

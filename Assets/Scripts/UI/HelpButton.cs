@@ -12,7 +12,7 @@ public class HelpButton : MonoBehaviour
     // Start is called before the first frame update
     public void ToggleHelp()
     {
-        if(isForPresentor == true)
+        if(PresentationController.IsHost()==true)
         {
             helpForPresentor?.SetActive(!helpForPresentor.activeSelf);
         }

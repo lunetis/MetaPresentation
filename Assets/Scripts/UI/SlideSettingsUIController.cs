@@ -107,6 +107,7 @@ public class SlideSettingsUIController : MonoBehaviour
 
     public void OnTitleTextChange()
     {
+        titleTextScript.RText(titleInputField.text);
         titleTextScript.titleText.text = titleInputField.text;
     }
 
