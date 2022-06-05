@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 718934927338489182}
   - component: {fileID: 3287163672976433127}
   - component: {fileID: 945891414152192311}
+  - component: {fileID: 4947264408285478010}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -510,6 +511,25 @@ MonoBehaviour:
     MinDelaySoft: 200
     MaxDelaySoft: 400
     MaxDelayHard: 1000
+--- !u!114 &4947264408285478010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129348069890131575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logLevel: 2
+  ignoreGlobalLogLevel: 0
+  recorderInUse: {fileID: 0}
+  speakerInUse: {fileID: 945891414152192311}
+  AutoCreateRecorderIfNotFound: 0
+  UsePrimaryRecorder: 1
+  SetupDebugSpeaker: 1
 --- !u!1 &140244518849360402
 GameObject:
   m_ObjectHideFlags: 0
