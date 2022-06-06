@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8199,7 +8199,6 @@ RectTransform:
   m_Children:
   - {fileID: 887321589}
   - {fileID: 833709739}
-  - {fileID: 1884024122}
   - {fileID: 1874597874}
   m_Father: {fileID: 1146251691}
   m_RootOrder: 5
@@ -8340,24 +8339,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Arrow Keys : Move Character
+  m_Text: 'P: Toggle Full Presentation View
 
-
-    P: Toggle Full Presentation View
-
-    O:
-    Toggle Sub Camera view (Full presentation view only)
+    O: Toggle Sub Camera view (Full
+    presentation view only)
 
     F1 - F6: Change Camera
 
-    1
-    - 6: Change Facial Expression
 
-
-    Enter: Next Slide
-
-    Space Bar: Next Slide(Slide),
-    Play/Pause(Video)
+    Right Mouse Button
+    + Drag: Rotate view (Self-view only)
 
 
     Backspace: Hide UI'
@@ -10418,10 +10409,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 4bdafb10c506dd74ca099c637009f4af, type: 2}
   m_TargetDisplay: 0
@@ -10524,6 +10515,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1169399476}
+  - {fileID: 1884024122}
   m_Father: {fileID: 1146251691}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13596,7 +13588,7 @@ RectTransform:
   m_Children:
   - {fileID: 895128017}
   m_Father: {fileID: 1084808159}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -13896,12 +13888,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884024121}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1084808159}
-  m_RootOrder: 2
+  m_Father: {fileID: 1412481264}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

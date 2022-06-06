@@ -26,6 +26,8 @@ public class PresentationCameraController : MonoBehaviour
 
     public CinemachineVirtualCamera vCam;
     int cameraCount;
+    
+    bool isVisibleCanvas = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -81,6 +83,21 @@ public class PresentationCameraController : MonoBehaviour
     {
         uiCamera.enabled = true;
     }
+    
+    void SetUIVisible(bool visible)
+    {
+        var canvases = FindObjectsOfType<Canvas>();
+        foreach(Canvas canvas in canvases)
+        {
+            // If the renderMode is ScreenSpaceCamera, this canvas is Keynote view canvas. (Must be always enabled)
+            if(canvas.renderMode == RenderMode.ScreenSpaceCamera)
+                continue;
+
+            canvas.enabled = visible;
+        }
+    }
+
+
 
     public void ChangeCamera(int index)
     {
@@ -105,6 +122,7 @@ public class PresentationCameraController : MonoBehaviour
         showPresenterWithKeynote = !showPresenterWithKeynote;
 
         subCameraView.SetActive(showPresenterWithKeynote == true && showKeynote == true);
+        
         currentCamera.targetTexture = (showPresenterWithKeynote == true) ? subCameraRenderTexture : null;
     }
 
@@ -113,6 +131,7 @@ public class PresentationCameraController : MonoBehaviour
         showKeynote = !showKeynote;
 
         // Changing target texture will change view
+        uiCamera.enabled = showKeynote;
         uiCamera.targetTexture = (showKeynote == false) ? keynoteTexture : null;
         currentCamera.targetTexture =  (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
 
@@ -123,11 +142,6 @@ public class PresentationCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PresentationController.IsHost() == false || (slideSettingsUIController != null && slideSettingsUIController.gameObject.activeSelf == true))
-        {
-            return;
-        }
-
         // Camera Switch
         if(Input.GetKeyDown(KeyCode.F1))
         {
@@ -160,6 +174,13 @@ public class PresentationCameraController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             ToggleFullKeynoteView();
+        }
+        
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            isVisibleCanvas = !isVisibleCanvas;
+            SetUIVisible(isVisibleCanvas);
         }
     }
 }

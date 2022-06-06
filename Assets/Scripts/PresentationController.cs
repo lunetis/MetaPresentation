@@ -67,7 +67,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
     int maxIndex = -1;
     PresentationData currentData;
 
-    bool isVisibleCanvas = true;
 
     // Start is called before the first frame update
     void Start()
@@ -122,28 +121,7 @@ public class PresentationController : MonoBehaviourPunCallbacks
                 ShowNextSlide();
             }
         }
-
-
-        if(Input.GetKeyDown(KeyCode.Backspace))
-        {
-            isVisibleCanvas = !isVisibleCanvas;
-            SetUIVisible(isVisibleCanvas);
-        }
     }
-
-    void SetUIVisible(bool visible)
-    {
-        var canvases = FindObjectsOfType<Canvas>();
-        foreach(Canvas canvas in canvases)
-        {
-            // If the renderMode is ScreenSpaceCamera, this canvas is Keynote view canvas. (Must be always enabled)
-            if(canvas.renderMode == RenderMode.ScreenSpaceCamera)
-                continue;
-
-            canvas.enabled = visible;
-        }
-    }
-
 
     public void ImportFolder()
     {
