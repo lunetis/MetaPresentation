@@ -24,7 +24,6 @@ public class ChangeSceneToSub : MonoBehaviour
 
     public void QuitApplication()
     {
-        Debug.Log("QUIT !!!");
         Application.Quit();
     }
     public void OnRetry()

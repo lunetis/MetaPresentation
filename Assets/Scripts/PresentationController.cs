@@ -409,7 +409,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
     {
         if(IsHost() == true)
         {
-        Debug.Log("Send1");
             pv.RPC("ReceiveTexture", RpcTarget.Others, presentationDataList[index].slideTexture.EncodeToPNG());
         }
     }
@@ -420,7 +419,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
         var receivedTexture = new Texture2D(1, 1);
         receivedTexture.LoadImage(receivedByte);
         ShowSlideWithTexture(receivedTexture);
-        Debug.Log("Received Texture");
     }
 
     // Warning: Video is not supported

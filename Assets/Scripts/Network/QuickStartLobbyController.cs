@@ -72,19 +72,16 @@ namespace lobby{
         }
         public void SetHost()
         {
-            print("Host Set");
             host=1;
             guest=0;
         }
         public void SetGuest()
         {
-            print("Guest Set");
             guest=1;
             host=0;
         }
         public void SetMap(int mapIndex)
         {
-            print("Map " + mapIndex + " Set");
             map = mapIndex;
         }
     }

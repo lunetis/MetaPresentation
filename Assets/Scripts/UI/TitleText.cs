@@ -17,7 +17,6 @@ public class TitleText : MonoBehaviourPunCallbacks
         pv = GetComponent<PhotonView>();
         if(titleText == null)
         {
-            Debug.Log("TitleText Null");
             titleText = GetComponent<TextMeshProUGUI>();
         }
         titleText.text = "";
@@ -46,7 +45,6 @@ public class TitleText : MonoBehaviourPunCallbacks
     {
         if(IsHost() == true)
         {
-            Debug.Log("Send2");
             pv.RPC("ReceiveText", RpcTarget.Others, titleText.text);
         }
     }
@@ -54,7 +52,6 @@ public class TitleText : MonoBehaviourPunCallbacks
     [PunRPC]
     void ReceiveText(string text)
     {
-        Debug.Log("Received"+text+"a");
         titleText.text=text;
     }
     public static bool IsHost()

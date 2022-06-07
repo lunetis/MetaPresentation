@@ -139,7 +139,6 @@ public class SlideSettingsUIController : MonoBehaviour
             if(videoPlayer.isPlaying == true)
             {
                 videoPlayer.Stop();
-                Debug.Log("Stopped");
             }
             slidePreviewImage.texture = data.slideTexture;
         }
@@ -156,7 +155,6 @@ public class SlideSettingsUIController : MonoBehaviour
     {
         if(selectedSlot == null)
         {
-            Debug.Log("no selected slot");
             return;
         }
 
@@ -205,6 +203,5 @@ public class SlideSettingsUIController : MonoBehaviour
         }
 
         videoPlayer.Play();
-        Debug.Log("Play start");
     }
 }

@@ -142,6 +142,12 @@ public class PresentationCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Do not change camera when settings panel is enabled
+        if(slideSettingsUIController.gameObject.activeSelf == true)
+        {
+            return;
+        }
+
         // Camera Switch
         if(Input.GetKeyDown(KeyCode.F1))
         {
@@ -181,6 +187,24 @@ public class PresentationCameraController : MonoBehaviour
         {
             isVisibleCanvas = !isVisibleCanvas;
             SetUIVisible(isVisibleCanvas);
+        }
+
+
+        // Mute voice
+        if(Input.GetKeyDown(KeyCode.M) && PresentationController.IsHost() == true)
+        {
+            var voiceNetwork = FindObjectOfType<Photon.Voice.PUN.PhotonVoiceNetwork>();
+            var audioSources = FindObjectsOfType<AudioSource>();
+            if(voiceNetwork != null)
+            {
+                bool enableStatus = !voiceNetwork.enabled;
+                voiceNetwork.enabled = enableStatus;
+                
+                foreach(var audioSource in audioSources)
+                {
+                    audioSource.enabled = enableStatus;
+                }
+            }
         }
     }
 }
