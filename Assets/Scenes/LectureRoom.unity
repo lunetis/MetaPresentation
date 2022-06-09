@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle Settings
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4538,7 +4538,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -50, y: 0}
-  m_SizeDelta: {x: 400, y: 250}
+  m_SizeDelta: {x: 400, y: 280}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &792704458
 MonoBehaviour:
@@ -6348,7 +6348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 63448327}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.71428573
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8824,7 +8824,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 280, y: -40}
-  m_SizeDelta: {x: 180, y: 41.03}
+  m_SizeDelta: {x: 160, y: 41.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1426243740
 MonoBehaviour:
@@ -11863,11 +11863,16 @@ MonoBehaviour:
 
     Enter: Next Slide
 
-    Space Bar: Next Slide(Slide),
-    Play/Pause(Video)
+    Ctrl + Enter: Next
+    Slide
+
+    Space Bar: Next Slide(Slide), Play/Pause(Video)
 
 
-    Backspace: Hide UI'
+    Backspace: Hide
+    UI
+
+    M: Mute'
 --- !u!222 &1928074386
 CanvasRenderer:
   m_ObjectHideFlags: 0

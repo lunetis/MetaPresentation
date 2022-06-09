@@ -36,12 +36,16 @@ public class SlideSettingsUIController : MonoBehaviour
     float slotHeight = 0;
     float contentsHeight = 0;
 
+    void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Start()
     {
         // VideoPlayer Component must be in slidePreviewImage object
         // videoPlayer = slidePreviewImage.GetComponent<VideoPlayer>();
         selectedSlot = null;
-        gameObject.SetActive(false);
         
         if(titleTextScript == null)
         {

@@ -107,7 +107,14 @@ public class PresentationController : MonoBehaviourPunCallbacks
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            ShowNextSlide();
+            if(Input.GetKey(KeyCode.LeftControl))
+            {
+                ShowPrevSlide();
+            }
+            else
+            {
+                ShowNextSlide();
+            }
         }
         
         if(Input.GetKeyDown(KeyCode.Space))
@@ -279,7 +286,7 @@ public class PresentationController : MonoBehaviourPunCallbacks
     {
         // Filter: png, jpg
         var paths = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories);
-        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
+        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".PNG") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
     }
 
     Texture2D GetTextureFromImage(string imagePath)
