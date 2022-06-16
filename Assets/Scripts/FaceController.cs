@@ -103,7 +103,7 @@ public class FaceController : MonoBehaviourPunCallbacks
         {
             PlayFaceAnim(4);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Alpha6))
         {
             PlayFaceAnim(5);
         }

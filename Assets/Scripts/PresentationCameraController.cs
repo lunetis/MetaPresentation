@@ -25,6 +25,8 @@ public class PresentationCameraController : MonoBehaviour
     public SlideSettingsUIController slideSettingsUIController;
 
     public CinemachineVirtualCamera vCam;
+
+    public GameObject keynoteCameraViewButton;
     int cameraCount;
     
     bool isVisibleCanvas = true;
@@ -114,7 +116,7 @@ public class PresentationCameraController : MonoBehaviour
         currentCamera.targetTexture = (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
     }
 
-    void ToggleSubCameraView()
+    public void ToggleSubCameraView()
     {
         if(showKeynote == false)
             return;
@@ -126,7 +128,7 @@ public class PresentationCameraController : MonoBehaviour
         currentCamera.targetTexture = (showPresenterWithKeynote == true) ? subCameraRenderTexture : null;
     }
 
-    void ToggleFullKeynoteView()
+    public void ToggleFullKeynoteView()
     {
         showKeynote = !showKeynote;
 
@@ -137,6 +139,8 @@ public class PresentationCameraController : MonoBehaviour
 
         subCameraView.SetActive(showPresenterWithKeynote == true && showKeynote == true);
         subKeynoteView.SetActive(showKeynote == false);
+
+        keynoteCameraViewButton.SetActive(showKeynote);
     }
 
     // Update is called once per frame

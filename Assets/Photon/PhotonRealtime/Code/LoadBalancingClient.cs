@@ -3038,6 +3038,7 @@ namespace Photon.Realtime
 
                     if (this.Server == ServerConnection.GameServer && wasInRoom)
                     {
+                        // TODO: This code must be active
                         this.MatchMakingCallbackTargets.OnLeftRoom();
                     }
 

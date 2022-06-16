@@ -54,6 +54,8 @@ public class PresentationController : MonoBehaviourPunCallbacks
 
     public PhotonView pv;
 
+    public Texture2D videoTextureForAudience;
+
 
     // Internal data
     string[] slidePaths;
@@ -66,6 +68,13 @@ public class PresentationController : MonoBehaviourPunCallbacks
     int index = 0;
     int maxIndex = -1;
     PresentationData currentData;
+
+    public static IEnumerable<string> GetSlidesFromFolder(string folderPath)
+    {
+        // Filter: png, jpg
+        var paths = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.TopDirectoryOnly);
+        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".PNG") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
+    }
 
 
     // Start is called before the first frame update
@@ -232,12 +241,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
 
     void ShowSlide()
     {
-        if(maxIndex == -1 || presentationDataList == null)
-        {
-            Debug.Log(maxIndex + " // " + presentationDataList);
-            return;
-        }
-
         // Set Buttons
         prevSlideButton.interactable = (index != 0);
         nextSlideButton.interactable = (index != maxIndex);
@@ -256,6 +259,8 @@ public class PresentationController : MonoBehaviourPunCallbacks
             videoPlayer.url = data.videoUrl;
 
             StartCoroutine(StopVideoCoroutine());
+            
+            data.slideTexture = videoTextureForAudience;
         }
         else
         {
@@ -280,13 +285,6 @@ public class PresentationController : MonoBehaviourPunCallbacks
 
         // Send Texture when changing slides
         SendTextureToClient();
-    }
-
-    IEnumerable<string> GetSlidesFromFolder(string folderPath)
-    {
-        // Filter: png, jpg
-        var paths = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories);
-        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".PNG") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
     }
 
     Texture2D GetTextureFromImage(string imagePath)

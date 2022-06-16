@@ -41,7 +41,7 @@ public class Folder_Controller : MonoBehaviour
             return;
         }
 
-        slidePaths = GetSlidesFromFolder(path).ToArray<string>();
+        slidePaths = PresentationController.GetSlidesFromFolder(path).ToArray<string>();
         Debug.Log(slidePaths.Length + " png/jpg/mp4 files were found.");
 
         // No images found
@@ -85,13 +85,6 @@ public class Folder_Controller : MonoBehaviour
         slidePreviewButton?.SetActive(true);
     }
 
-
-    IEnumerable<string> GetSlidesFromFolder(string folderPath)
-    {
-        // Filter: png, jpg
-        var paths = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories);
-        return paths.Where(s => s.EndsWith(".png") || s.EndsWith(".jpg") || s.EndsWith(".mp4"));
-    }
 
     Texture2D GetTextureFromImage(string imagePath)
     {

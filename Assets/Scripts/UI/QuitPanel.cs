@@ -7,9 +7,11 @@ using Photon.Pun;
 public class QuitPanel : MonoBehaviourPunCallbacks
 {
     public GameObject panel;
+    bool leaveEnabled;
     // Start is called before the first frame update
     void Start()
     {
+        leaveEnabled = false;
         panel.SetActive(false);
     }
 
@@ -23,12 +25,16 @@ public class QuitPanel : MonoBehaviourPunCallbacks
 
     public void OnQuit()
     {
-        // 0 must be lobby
+        leaveEnabled = true;
         PhotonNetwork.LeaveRoom();
     }
 
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        if(leaveEnabled == true)
+        {
+            // 0 must be lobby
+            SceneManager.LoadScene(0);
+        }
     }
 }
