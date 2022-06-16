@@ -1,6 +1,8 @@
 # MetaPresentation
  
-Metaverse Presentation Tool Prototype
+<img src="img/ex1.gif" alt="drawing" width="600"/> 
+
+#### Prototype of Metaverse Presentation Tool
  
 Made for Capstone Design I Project.
 
@@ -32,3 +34,15 @@ Made for Capstone Design I Project.
 * Photon Engine (Realtime, Voice): https://www.photonengine.com/
 * Unity Standalone File Browser: https://github.com/gkngkc/UnityStandaloneFileBrowser, MIT License
 * LeanTween: https://assetstore.unity.com/packages/tools/animation/leantween-3595
+
+## Example Screenshots
+
+<img src="img/2.png" alt="drawing" width="600"/>
+<img src="img/3.jpg" alt="drawing" width="600"/>
+<img src="img/6.jpg" alt="drawing" width="600"/>
+<img src="img/7.png" alt="drawing" width="600"/>
+<img src="img/9.png" alt="drawing" width="600"/>
+
+
+* Used slide in screenshots: https://www.slideshare.net/dakami/chicken-chicken-chicken-chicken
+* Original paper: Doug Zongker, _"Chicken Chicken Chicken: Chicken Chicken"_, University of Washington, 2002, https://isotropic.org/papers/chicken.pdf
