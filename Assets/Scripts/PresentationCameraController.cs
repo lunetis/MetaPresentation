@@ -133,7 +133,7 @@ public class PresentationCameraController : MonoBehaviour
         showKeynote = !showKeynote;
 
         // Changing target texture will change view
-        uiCamera.enabled = showKeynote;
+        //uiCamera.enabled = showKeynote;
         uiCamera.targetTexture = (showKeynote == false) ? keynoteTexture : null;
         currentCamera.targetTexture =  (showPresenterWithKeynote == true && showKeynote == true) ? subCameraRenderTexture : null;
 

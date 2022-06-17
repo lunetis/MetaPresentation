@@ -8,6 +8,8 @@ public class QuitPanel : MonoBehaviourPunCallbacks
 {
     public GameObject panel;
     bool leaveEnabled;
+    bool forceQuit;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +23,26 @@ public class QuitPanel : MonoBehaviourPunCallbacks
         {
             panel.SetActive(!panel.activeSelf);
         }
+
+        forceQuit = Input.GetKey(KeyCode.LeftControl);
     }
 
     public void OnQuit()
     {
         leaveEnabled = true;
         PhotonNetwork.LeaveRoom();
+
+        // Force quit when pressing left ctrl
+        if(forceQuit == true)
+        {
+            Debug.Log("Force Quit");
+            SceneManager.LoadScene(0);
+        }
     }
 
     public override void OnLeftRoom()
     {
+        // Prevent quit by network disconnect error
         if(leaveEnabled == true)
         {
             // 0 must be lobby

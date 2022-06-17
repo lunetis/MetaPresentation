@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animations:
   - {fileID: 7400000, guid: 6394472d24c9347e5bb789ec1f15e5bb, type: 2}
-  - {fileID: 7400000, guid: 3555863ff4ef948e298b8d11ea795ec4, type: 2}
+  - {fileID: 7400000, guid: 06b76ba9895174fc19d91c361e7c911b, type: 2}
   - {fileID: 7400000, guid: a20620e3db1a64f2f9a3e3339b884479, type: 2}
   - {fileID: 7400000, guid: 689da6f371ad8441395f39acaf2c7ae3, type: 2}
   - {fileID: 7400000, guid: fc07439899bf64b59b05471e3d59be6a, type: 2}
