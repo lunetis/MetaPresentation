@@ -6,6 +6,8 @@
  
 Made for Capstone Design I Project.
 
+*Unity version: 2020.3.31f1
+
 ## Features
 
 * Supporting file type: `.png`, `.jpg`, `.mp4`(video)
