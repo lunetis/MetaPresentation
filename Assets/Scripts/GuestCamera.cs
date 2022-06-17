@@ -38,6 +38,9 @@ public class GuestCamera : MonoBehaviourPunCallbacks, IPunObservable
         {
             if(camera != Camera.main)
             {
+                if(camera.name == "UI Camera")
+                    continue;
+                    
                 camera.gameObject.SetActive(false);
             }
         }

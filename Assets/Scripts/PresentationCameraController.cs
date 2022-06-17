@@ -34,7 +34,7 @@ public class PresentationCameraController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        uiCamera.enabled = false;
+        // uiCamera.enabled = false;
     }
     void Start()
     {
