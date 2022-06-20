@@ -31,6 +31,8 @@ public class PresentationCameraController : MonoBehaviour
     
     bool isVisibleCanvas = true;
 
+    public GameObject muteIcon;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -92,7 +94,7 @@ public class PresentationCameraController : MonoBehaviour
         foreach(Canvas canvas in canvases)
         {
             // If the renderMode is ScreenSpaceCamera, this canvas is Keynote view canvas. (Must be always enabled)
-            if(canvas.renderMode == RenderMode.ScreenSpaceCamera)
+            if(canvas.renderMode == RenderMode.ScreenSpaceCamera || canvas.name == "Canvas")
                 continue;
 
             canvas.enabled = visible;
@@ -208,6 +210,8 @@ public class PresentationCameraController : MonoBehaviour
                 {
                     audioSource.enabled = enableStatus;
                 }
+
+                muteIcon?.SetActive(!enableStatus);
             }
         }
     }
